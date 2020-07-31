@@ -12,7 +12,7 @@
 #
 #	Addition: One command to rule them all, One command to find it, and One command to Run it! 
 #
-#     > powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://git.io/JJ8R4')"
+#     > powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://git.io/JJazm')"
 #
 #	Chris Titus Additions:
 #
