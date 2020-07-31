@@ -26,6 +26,7 @@
 #	Saul Bretado Contribution:
 #
 #	- Traduccion al español de notas y comentarios
+#	- Agregue notificación auditiva después de instalar o modificar algo
 #	- Instalacion de VCL Media Player
 #
 ##########
@@ -40,7 +41,7 @@ $tweaks = @(
 	"Install7Zip",
 	"InstallNotepadplusplus",
 	#"InstallMediaPlayerClassic",
-	"InstallVCLMediaPlayer",
+	"InstallVLCMediaPlayer",
 
 	### Aplicaciones Windows
 	"DebloatAll",
@@ -210,31 +211,37 @@ Function ProgramasaInstalar {
 Function InstallAdobe {
 	Write-Output "Instalando Adobe Acrobat Reader"
 	choco install adobereader -y
+	[System.Console]::Beep()
 }
 
 Function InstallJava {
 	Write-Output "Instalando Java"
 	choco install jre8 -y
+	[System.Console]::Beep()
 }
 
 Function Install7Zip {
 	Write-Output "Instalando 7-Zip"
 	choco install 7zip -y
+	[System.Console]::Beep()
 }
 
 Function InstallNotepadplusplus {
 	Write-Output "Instalando Notepad++"
 	choco install notepadplusplus -y
+	[System.Console]::Beep()
 }
 
 Function InstallMediaPlayerClassic {
 	Write-Output "Instalando Media Player Classic (VLC Alternative)"
 	choco install mpc-hc -y
+	[System.Console]::Beep()
 }
 
-Function InstallVCLMediaPlayer {
-	Write-Output "Instalando VCL Media Player"
+Function InstallVLCMediaPlayer {
+	Write-Output "Instalando VLC Media Player"
 	choco install vlc -y
+	[System.Console]::Beep()
 }
 
 ##########
