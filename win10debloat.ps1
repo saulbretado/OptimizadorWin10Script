@@ -27,7 +27,16 @@
 #
 #	- Traduccion al español de notas y comentarios
 #	- Agregue notificación auditiva después de instalar o modificar algo
+#	- Agregue colores en el proceso
 #	- Instalacion de VCL Media Player
+#
+#	Deseas apoyarme para seguir mejorando este proyecto?
+#
+#	Descarga el Navegador Brave, el navegador de internet que se preocupa por tu privacidad
+#
+#	https://getbravetoday.com
+#
+#	Brave me hará una pequeña donación y a ti un te costara nada, ya que Brave es 100% gratis
 #
 ##########
 # Configuracion Primaria
@@ -198,7 +207,7 @@ $tweaks = @(
 #########
 
 Function ProgramasaInstalar {
-	Write-Output "Installing Chocolatey"
+	Write-Output "Installing Chocolatey" -ForegroundColor white -BackgroundColor red
 	Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 	choco install chocolatey-core.extension -y
 	Write-Output "Ejecutando O&O Shutup con Configuración Recomendada"
@@ -207,42 +216,49 @@ Function ProgramasaInstalar {
 	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination OOSU10.exe
 	./OOSU10.exe ooshutup10.cfg /quiet
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 Function InstallAdobe {
-	Write-Output "Instalando Adobe Acrobat Reader"
+	Write-Output "Instalando Adobe Acrobat Reader" -ForegroundColor white -BackgroundColor red
 	choco install adobereader -y
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 Function InstallJava {
-	Write-Output "Instalando Java"
+	Write-Output "Instalando Java" -ForegroundColor white -BackgroundColor red
 	choco install jre8 -y
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 Function Install7Zip {
-	Write-Output "Instalando 7-Zip"
+	Write-Output "Instalando 7-Zip" -ForegroundColor white -BackgroundColor red
 	choco install 7zip -y
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
+	Write-Output "Instalando Notepad++" -ForegroundColor white -BackgroundColor red
 Function InstallNotepadplusplus {
-	Write-Output "Instalando Notepad++"
 	choco install notepadplusplus -y
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 Function InstallMediaPlayerClassic {
-	Write-Output "Instalando Media Player Classic (VLC Alternative)"
+	Write-Output "Instalando Media Player Classic (VLC Alternative)" -ForegroundColor white -BackgroundColor red
 	choco install mpc-hc -y
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 Function InstallVLCMediaPlayer {
-	Write-Output "Instalando VLC Media Player"
+	Write-Output "Instalando VLC Media Player" -ForegroundColor white -BackgroundColor red
 	choco install vlc -y
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 ##########
@@ -254,7 +270,7 @@ Function InstallVLCMediaPlayer {
 # El Panel de Control de Windows mostrara el mensaje “Tu dispositivo está en riesgo porque esta sin actualizar y perdiendo importantes actualizaciones de seguridad y calidad. Etc.”
 # En este caso, habilita telemetría, ejecuta la actualización de Windows y después deshabilita telemetría nuevamente. Puedes ver https://github.com/Disassembler0/Win10-Initial-Setup-Script/issues/57 para más información.
 Function DisableTelemetry {
-	Write-Output "Deshabilitando Telemetría..."
+	Write-Output "Deshabilitando Telemetría..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
@@ -265,11 +281,12 @@ Function DisableTelemetry {
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" | Out-Null
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Telemetría
 Function EnableTelemetry {
-	Write-Output "Habilitando Telemetría..."
+	Write-Output "Habilitando Telemetría..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 3
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 3
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "AllowTelemetry" -ErrorAction SilentlyContinue
@@ -280,11 +297,12 @@ Function EnableTelemetry {
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" | Out-Null
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Wi-Fi Sense
 Function DisableWiFiSense {
-	Write-Output "Deshabilitando Wi-Fi Sense..."
+	Write-Output "Deshabilitando Wi-Fi Sense..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Force | Out-Null
 	}
@@ -296,11 +314,12 @@ Function DisableWiFiSense {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "AutoConnectAllowedOEM" -Type Dword -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "WiFISenseAllowed" -Type Dword -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Wi-Fi Sense
 Function EnableWiFiSense {
-	Write-Output "Habilitando Wi-Fi Sense..."
+	Write-Output "Habilitando Wi-Fi Sense..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Force | Out-Null
 	}
@@ -309,30 +328,33 @@ Function EnableWiFiSense {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "AutoConnectAllowedOEM" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "WiFISenseAllowed" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar SmartScreen Filter
 Function DisableSmartScreen {
-	Write-Output "Deshabilitando SmartScreen Filter..."
+	Write-Output "Deshabilitando SmartScreen Filter..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableSmartScreen" -Type DWord -Value 0
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" -Name "EnabledV9" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Filtro SmartScreen
 Function EnableSmartScreen {
-	Write-Output "Habilitando Filtro SmartScreen..."
+	Write-Output "Habilitando Filtro SmartScreen..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableSmartScreen" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" -Name "EnabledV9" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Busqueda en Internet en Menú de Inicio
 Function DisableWebSearch {
-	Write-Output "Deshabilitando Busqueda en Bing Search en Menú de Inicio..."
+	Write-Output "Deshabilitando Busqueda en Bing Search en Menú de Inicio..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "CortanaConsent" -Type DWord -Value 0
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search")) {
@@ -340,20 +362,22 @@ Function DisableWebSearch {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Busqueda en Internet en Menú de Inicio
 Function EnableWebSearch {
-	Write-Output "Habilitando Busqueda en Bing Search en Menú de Inicio..."
+	Write-Output "Habilitando Busqueda en Bing Search en Menú de Inicio..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -ErrorAction SilentlyContinue
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "CortanaConsent" -Type DWord -Value 1
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar sugerencia de Aplicaciones e instalaciones automaticas
 Function DisableAppSuggestions {
-	Write-Output "Deshabilitando sugerencias de Aplicaciones..."
+	Write-Output "Deshabilitando sugerencias de Aplicaciones..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "ContentDeliveryAllowed" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "OemPreInstalledAppsEnabled" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEnabled" -Type DWord -Value 0
@@ -369,11 +393,12 @@ Function DisableAppSuggestions {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar sugerencia de Aplicaciones e instalaciones automaticas
 Function EnableAppSuggestions {
-	Write-Output "Habilitando sugerencias de Aplicaciones..."
+	Write-Output "Habilitando sugerencias de Aplicaciones..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "ContentDeliveryAllowed" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "OemPreInstalledAppsEnabled" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "PreInstalledAppsEnabled" -Type DWord -Value 1
@@ -386,49 +411,54 @@ Function EnableAppSuggestions {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-353698Enabled" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Historial de Actividad feed in Task View - Note: The checkbox "Let Windows collect my activities from this PC" remains checked even when the function is disabled
 Function DisableActivityHistory {
-	Write-Output "Deshabilitando Historial de Actividad..."
+	Write-Output "Deshabilitando Historial de Actividad..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableActivityFeed" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "PublishUserActivities" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "UploadUserActivities" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Activity History feed in Task View
 Function EnableActivityHistory {
-	Write-Output "Habilitando Historial de Actividad..."
+	Write-Output "Habilitando Historial de Actividad..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableActivityFeed" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "PublishUserActivities" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "UploadUserActivities" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar accesso de aplicaciones en Segundo Plano - por ejemplo, si aplicaciones pueden descargar o actualizarse cuando no son utilizadas – Costana esta excluida de esta modificación.
 Function DisableBackgroundApps {
-	Write-Output "Deshabilitando acceso de aplicaciones en Segundo Plano..."
+	Write-Output "Deshabilitando acceso de aplicaciones en Segundo Plano..." -ForegroundColor white -BackgroundColor red
 	Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" -Exclude "Microsoft.Windows.Cortana*" | ForEach {
 		Set-ItemProperty -Path $_.PsPath -Name "Disabled" -Type DWord -Value 1
 		Set-ItemProperty -Path $_.PsPath -Name "DisabledByUser" -Type DWord -Value 1
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar accesso de Aplicaciones en Segundo Plano
 Function EnableBackgroundApps {
-	Write-Output "Habilitando acceso de Aplicaciones en Segundo Plano..."
+	Write-Output "Habilitando acceso de Aplicaciones en Segundo Plano..." -ForegroundColor white -BackgroundColor red
 	Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" | ForEach {
 		Remove-ItemProperty -Path $_.PsPath -Name "Disabled" -ErrorAction SilentlyContinue
 		Remove-ItemProperty -Path $_.PsPath -Name "DisabledByUser" -ErrorAction SilentlyContinue
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Ubicación
 Function DisableLocationTracking {
-	Write-Output "Deshabilitando Ubicación..."
+	Write-Output "Deshabilitando Ubicación..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" -Force | Out-Null
 	}
@@ -436,11 +466,12 @@ Function DisableLocationTracking {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Ubicación
 Function EnableLocationTracking {
-	Write-Output "Habilitando Ubicación..."
+	Write-Output "Habilitando Ubicación..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" -Force | Out-Null
 	}
@@ -448,25 +479,28 @@ Function EnableLocationTracking {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar actualizaciones automáticas de Maps
 Function DisableMapUpdates {
-	Write-Output "Deshabilitando actualizaciones automáticas de Maps..."
+	Write-Output "Deshabilitando actualizaciones automáticas de Maps..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar actualizaciones automáticas de Maps
 Function EnableMapUpdates {
-	Write-Output "Habilitando actualizaciones automáticas de Maps..."
+	Write-Output "Habilitando actualizaciones automáticas de Maps..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Feedback
 Function DisableFeedback {
-	Write-Output "Deshabilitando Feedback..."
+	Write-Output "Deshabilitando Feedback..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Force | Out-Null
 	}
@@ -475,54 +509,60 @@ Function DisableFeedback {
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClient" -ErrorAction SilentlyContinue | Out-Null
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" -ErrorAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Feedback
 Function EnableFeedback {
-	Write-Output "Habilitando Feedback..."
+	Write-Output "Habilitando Feedback..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "DoNotShowFeedbackNotifications" -ErrorAction SilentlyContinue
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClient" -ErrorAction SilentlyContinue | Out-Null
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" -ErrorAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Tailored Experiences
 Function DisableTailoredExperiences {
-	Write-Output "Deshabilitando Tailored Experiences..."
+	Write-Output "Deshabilitando Tailored Experiences..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent")) {
 		New-Item -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableTailoredExperiencesWithDiagnosticData" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Tailored Experiences
 Function EnableTailoredExperiences {
-	Write-Output "Habilitando Tailored Experiences..."
+	Write-Output "Habilitando Tailored Experiences..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableTailoredExperiencesWithDiagnosticData" -ErrorAction SilentlyContinue
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Advertising ID
 Function DisableAdvertisingID {
-	Write-Output "Deshabilitando Advertising ID..."
+	Write-Output "Deshabilitando Advertising ID..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" -Name "DisabledByGroupPolicy" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Advertising ID
 Function EnableAdvertisingID {
-	Write-Output "Habilitando Advertising ID..."
+	Write-Output "Habilitando Advertising ID..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" -Name "DisabledByGroupPolicy" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Cortana
 Function DisableCortana {
-	Write-Output "Deshabilitando Cortana..."
+	Write-Output "Deshabilitando Cortana..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Personalization\Settings")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Personalization\Settings" -Force | Out-Null
 	}
@@ -541,11 +581,12 @@ Function DisableCortana {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "AllowCortana" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Cortana
 Function EnableCortana {
-	Write-Output "Habilitando Cortana..."
+	Write-Output "Habilitando Cortana..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Personalization\Settings" -Name "AcceptedPrivacyPolicy" -ErrorAction SilentlyContinue
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
@@ -555,22 +596,25 @@ Function EnableCortana {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "AllowCortana" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Error reporting
 Function DisableErrorReporting {
-	Write-Output "Deshabilitando Error reporting..."
+	Write-Output "Deshabilitando Error reporting..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -Type DWord -Value 1
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Error reporting
 Function EnableErrorReporting {
-	Write-Output "Habilitando Error reporting..."
+	Write-Output "Habilitando Error reporting..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -ErrorAction SilentlyContinue
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Restrict Windows Update P2P only to local network - Needed only for 1507 as local P2P is the default since 1511
@@ -580,46 +624,53 @@ Function SetP2PUpdateLocal {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -Type DWord -Value 1
+	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Unrestrict Windows Update P2P
 Function SetP2PUpdateInternet {
-	Write-Output "Unrestricting Windows Update P2P to internet..."
+	Write-Output "Unrestricting Windows Update P2P to internet..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Stop and disable Diagnostics Tracking Service
 Function DisableDiagTrack {
-	Write-Output "Stopping and disabling Diagnostics Tracking Service..."
+	Write-Output "Stopping and disabling Diagnostics Tracking Service..." -ForegroundColor white -BackgroundColor red
 	Stop-Service "DiagTrack" -WarningAction SilentlyContinue
 	Set-Service "DiagTrack" -StartupType Disabled
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar and start Diagnostics Tracking Service
 Function EnableDiagTrack {
-	Write-Output "Habilitando and starting Diagnostics Tracking Service..."
+	Write-Output "Habilitando and starting Diagnostics Tracking Service..." -ForegroundColor white -BackgroundColor red
 	Set-Service "DiagTrack" -StartupType Automatic
 	Start-Service "DiagTrack" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Stop and disable WAP Push Service
 Function DisableWAPPush {
-	Write-Output "Stopping and disabling WAP Push Service..."
+	Write-Output "Stopping and disabling WAP Push Service..." -ForegroundColor white -BackgroundColor red
 	Stop-Service "dmwappushservice" -WarningAction SilentlyContinue
 	Set-Service "dmwappushservice" -StartupType Disabled
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar and start WAP Push Service
 Function EnableWAPPush {
-	Write-Output "Habilitando and starting WAP Push Service..."
+	Write-Output "Habilitando and starting WAP Push Service..." -ForegroundColor white -BackgroundColor red
 	Set-Service "dmwappushservice" -StartupType Automatic
 	Start-Service "dmwappushservice" -WarningAction SilentlyContinue
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\dmwappushservice" -Name "DelayedAutoStart" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 
@@ -630,176 +681,198 @@ Function EnableWAPPush {
 
 # Lower UAC level (disabling it completely would break apps)
 Function SetUACLow {
-	Write-Output "Lowering UAC level..."
+	Write-Output "Lowering UAC level..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "PromptOnSecureDesktop" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Raise UAC level
 Function SetUACHigh {
-	Write-Output "Raising UAC level..."
+	Write-Output "Raising UAC level..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Type DWord -Value 5
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "PromptOnSecureDesktop" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar sharing mapped drives between users
 Function EnableSharingMappedDrives {
-	Write-Output "Habilitando sharing mapped drives between users..."
+	Write-Output "Habilitando sharing mapped drives between users..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar sharing mapped drives between users
 Function DisableSharingMappedDrives {
-	Write-Output "Deshabilitando sharing mapped drives between users..."
+	Write-Output "Deshabilitando sharing mapped drives between users..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar implicit administrative shares
 Function DisableAdminShares {
-	Write-Output "Deshabilitando implicit administrative shares..."
+	Write-Output "Deshabilitando implicit administrative shares..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "AutoShareWks" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar implicit administrative shares
 Function EnableAdminShares {
-	Write-Output "Habilitando implicit administrative shares..."
+	Write-Output "Habilitando implicit administrative shares..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "AutoShareWks" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar obsolete SMB 1.0 protocol - Disabled by default since 1709
 Function DisableSMB1 {
-	Write-Output "Deshabilitando SMB 1.0 protocol..."
+	Write-Output "Deshabilitando SMB 1.0 protocol..." -ForegroundColor white -BackgroundColor red
 	Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar obsolete SMB 1.0 protocol - Disabled by default since 1709
 Function EnableSMB1 {
-	Write-Output "Habilitando SMB 1.0 protocol..."
+	Write-Output "Habilitando SMB 1.0 protocol..." -ForegroundColor white -BackgroundColor red
 	Set-SmbServerConfiguration -EnableSMB1Protocol $true -Force
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar SMB Server - Completely disables file and printer sharing, but leaves the system able to connect to another SMB server as a client
 Function DisableSMBServer {
-	Write-Output "Deshabilitando SMB Server..."
+	Write-Output "Deshabilitando SMB Server..." -ForegroundColor white -BackgroundColor red
 	Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force
 	Set-SmbServerConfiguration -EnableSMB2Protocol $false -Force
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar SMB Server
 Function EnableSMBServer {
-	Write-Output "Habilitando SMB Server..."
+	Write-Output "Habilitando SMB Server..." -ForegroundColor white -BackgroundColor red
 	Set-SmbServerConfiguration -EnableSMB2Protocol $true -Force
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Link-Local Multicast Name Resolution (LLMNR) protocol
 Function DisableLLMNR {
-	Write-Output "Deshabilitando LLMNR..."
+	Write-Output "Deshabilitando LLMNR..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" -Name "EnableMulticast" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Link-Local Multicast Name Resolution (LLMNR) protocol
 Function EnableLLMNR {
-	Write-Output "Habilitando LLMNR..."
+	Write-Output "Habilitando LLMNR..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" -Name "EnableMulticast" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set current network profile to private (allow file sharing, device discovery, etc.)
 Function SetCurrentNetworkPrivate {
-	Write-Output "Setting current network profile to private..."
+	Write-Output "Setting current network profile to private..." -ForegroundColor white -BackgroundColor red
 	Set-NetConnectionProfile -NetworkCategory Private
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set current network profile to public (deny file sharing, device discovery, etc.)
 Function SetCurrentNetworkPublic {
-	Write-Output "Setting current network profile to public..."
+	Write-Output "Setting current network profile to public..." -ForegroundColor white -BackgroundColor red
 	Set-NetConnectionProfile -NetworkCategory Public
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set unknown networks profile to private (allow file sharing, device discovery, etc.)
 Function SetUnknownNetworksPrivate {
-	Write-Output "Setting unknown networks profile to private..."
+	Write-Output "Setting unknown networks profile to private..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\010103000F0000F0010000000F0000F0C967A3643C3AD745950DA7859209176EF5B87C875FA20DF21951640E807D7C24")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\010103000F0000F0010000000F0000F0C967A3643C3AD745950DA7859209176EF5B87C875FA20DF21951640E807D7C24" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\010103000F0000F0010000000F0000F0C967A3643C3AD745950DA7859209176EF5B87C875FA20DF21951640E807D7C24" -Name "Category" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set unknown networks profile to public (deny file sharing, device discovery, etc.)
 Function SetUnknownNetworksPublic {
-	Write-Output "Setting unknown networks profile to public..."
+	Write-Output "Setting unknown networks profile to public..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\010103000F0000F0010000000F0000F0C967A3643C3AD745950DA7859209176EF5B87C875FA20DF21951640E807D7C24" -Name "Category" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar automatic installation of network devices
 Function DisableNetDevicesAutoInst {
-	Write-Output "Deshabilitando automatic installation of network devices..."
+	Write-Output "Deshabilitando automatic installation of network devices..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\NcdAutoSetup\Private")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\NcdAutoSetup\Private" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\NcdAutoSetup\Private" -Name "AutoSetup" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar automatic installation of network devices
 Function EnableNetDevicesAutoInst {
-	Write-Output "Habilitando automatic installation of network devices..."
+	Write-Output "Habilitando automatic installation of network devices..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\NcdAutoSetup\Private" -Name "AutoSetup" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Controlled Folder Access (Defender Exploit Guard feature) - Applicable to 1709 or newer, requires Windows Defender to be enabled
 Function EnableCtrldFolderAccess {
-	Write-Output "Habilitando Controlled Folder Access..."
+	Write-Output "Habilitando Controlled Folder Access..." -ForegroundColor white -BackgroundColor red
 	Set-MpPreference -EnableControlledFolderAccess Enabled
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Controlled Folder Access (Defender Exploit Guard feature) - Applicable to 1709 or newer, requires Windows Defender to be enabled
 Function DisableCtrldFolderAccess {
-	Write-Output "Deshabilitando Controlled Folder Access..."
+	Write-Output "Deshabilitando Controlled Folder Access..." -ForegroundColor white -BackgroundColor red
 	Set-MpPreference -EnableControlledFolderAccess Disabled
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Firewall
 Function DisableFirewall {
-	Write-Output "Deshabilitando Firewall..."
+	Write-Output "Deshabilitando Firewall..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" -Name "EnableFirewall" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Firewall
 Function EnableFirewall {
-	Write-Output "Habilitando Firewall..."
+	Write-Output "Habilitando Firewall..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" -Name "EnableFirewall" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Windows Defender
 Function DisableDefender {
-	Write-Output "Deshabilitando Windows Defender..."
+	Write-Output "Deshabilitando Windows Defender..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force | Out-Null
 	}
@@ -810,11 +883,12 @@ Function DisableDefender {
 		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Windows Defender
 Function EnableDefender {
-	Write-Output "Habilitando Windows Defender..."
+	Write-Output "Habilitando Windows Defender..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -ErrorAction SilentlyContinue
 	If ([System.Environment]::OSVersion.Version.Build -eq 14393) {
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsDefender" -Type ExpandString -Value "`"%ProgramFiles%\Windows Defender\MSASCuiL.exe`""
@@ -822,100 +896,114 @@ Function EnableDefender {
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -Type ExpandString -Value "`"%ProgramFiles%\Windows Defender\MSASCuiL.exe`""
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Windows Defender Cloud
 Function DisableDefenderCloud {
-	Write-Output "Deshabilitando Windows Defender Cloud..."
+	Write-Output "Deshabilitando Windows Defender Cloud..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SpynetReporting" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SubmitSamplesConsent" -Type DWord -Value 2
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Windows Defender Cloud
 Function EnableDefenderCloud {
-	Write-Output "Habilitando Windows Defender Cloud..."
+	Write-Output "Habilitando Windows Defender Cloud..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SpynetReporting" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SubmitSamplesConsent" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar F8 boot menu options
 Function EnableF8BootMenu {
-	Write-Output "Habilitando F8 boot menu options..."
+	Write-Output "Habilitando F8 boot menu options..." -ForegroundColor white -BackgroundColor red
 	bcdedit /set `{current`} bootmenupolicy Legacy | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar F8 boot menu options
 Function DisableF8BootMenu {
-	Write-Output "Deshabilitando F8 boot menu options..."
+	Write-Output "Deshabilitando F8 boot menu options..." -ForegroundColor white -BackgroundColor red
 	bcdedit /set `{current`} bootmenupolicy Standard | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set Data Execution Prevention (DEP) policy to OptOut
 Function SetDEPOptOut {
-	Write-Output "Setting Data Execution Prevention (DEP) policy to OptOut..."
+	Write-Output "Setting Data Execution Prevention (DEP) policy to OptOut..." -ForegroundColor white -BackgroundColor red
 	bcdedit /set `{current`} nx OptOut | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set Data Execution Prevention (DEP) policy to OptIn
 Function SetDEPOptIn {
-	Write-Output "Setting Data Execution Prevention (DEP) policy to OptIn..."
+	Write-Output "Setting Data Execution Prevention (DEP) policy to OptIn..." -ForegroundColor white -BackgroundColor red
 	bcdedit /set `{current`} nx OptIn | Out-Null
+	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Core Isolation Memory Integrity - Part of Windows Defender System Guard virtualization-based security - Supported from 1803
 Function EnableCIMemoryIntegrity {
-	Write-Output "Habilitando Core Isolation Memory Integrity..."
+	Write-Output "Habilitando Core Isolation Memory Integrity..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity")) {
 		New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Core Isolation Memory Integrity - 
 Function DisableCIMemoryIntegrity {
-	Write-Output "Deshabilitando Core Isolation Memory Integrity..."
+	Write-Output "Deshabilitando Core Isolation Memory Integrity..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Windows Script Host (execution of *.vbs scripts and alike)
 Function DisableScriptHost {
-	Write-Output "Deshabilitando Windows Script Host..."
+	Write-Output "Deshabilitando Windows Script Host..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings" -Name "Enabled" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Windows Script Host
 Function EnableScriptHost {
-	Write-Output "Habilitando Windows Script Host..."
+	Write-Output "Habilitando Windows Script Host..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings" -Name "Enabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar strong cryptography for .NET Framework (version 4 and above)
 # https://stackoverflow.com/questions/36265534/invoke-webrequest-ssl-fails
 Function EnableDotNetStrongCrypto {
-	Write-Output "Habilitando .NET strong cryptography..."
+	Write-Output "Habilitando .NET strong cryptography..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar strong cryptography for .NET Framework (version 4 and above)
 Function DisableDotNetStrongCrypto {
-	Write-Output "Deshabilitando .NET strong cryptography..."
+	Write-Output "Deshabilitando .NET strong cryptography..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Meltdown (CVE-2017-5754) compatibility flag - Required for January 2018 and all subsequent Windows updates
@@ -923,19 +1011,21 @@ Function DisableDotNetStrongCrypto {
 # Use the tweak only if you have confirmed that your AV is compatible but unable to set the flag automatically or if you don't use any AV at all.
 # See https://support.microsoft.com/en-us/help/4072699/january-3-2018-windows-security-updates-and-antivirus-software for details.
 Function EnableMeltdownCompatFlag {
-	Write-Output "Habilitando Meltdown (CVE-2017-5754) compatibility flag..."
+	Write-Output "Habilitando Meltdown (CVE-2017-5754) compatibility flag..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\QualityCompat")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\QualityCompat" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\QualityCompat" -Name "cadca5fe-87d3-4b96-b7fb-a231484277cc" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Meltdown (CVE-2017-5754) compatibility flag
 Function DisableMeltdownCompatFlag {
-	Write-Output "Deshabilitando Meltdown (CVE-2017-5754) compatibility flag..."
+	Write-Output "Deshabilitando Meltdown (CVE-2017-5754) compatibility flag..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\QualityCompat" -Name "cadca5fe-87d3-4b96-b7fb-a231484277cc" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 
@@ -946,26 +1036,28 @@ Function DisableMeltdownCompatFlag {
 
 # Deshabilitar offering of Malicious Software Removal Tool through Windows Update
 Function DisableUpdateMSRT {
-	Write-Output "Deshabilitando Malicious Software Removal Tool offering..."
+	Write-Output "Deshabilitando Malicious Software Removal Tool offering..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" -Name "DontOfferThroughWUAU" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar offering of Malicious Software Removal Tool through Windows Update
 Function EnableUpdateMSRT {
-	Write-Output "Habilitando Malicious Software Removal Tool offering..."
+	Write-Output "Habilitando Malicious Software Removal Tool offering..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" -Name "DontOfferThroughWUAU" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar offering of drivers through Windows Update
 # Note: This doesn't work properly if you use a driver intended for another hardware model. E.g. Intel I219-V on WinServer works only with I219-LM driver.
 # Therefore Windows update will repeatedly try and fail to install I219-V driver indefinitely even if you use the tweak.
 Function DisableUpdateDriver {
-	Write-Output "Deshabilitando driver offering through Windows Update..."
+	Write-Output "Deshabilitando driver offering through Windows Update..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata" -Force | Out-Null
 	}
@@ -981,140 +1073,155 @@ Function DisableUpdateDriver {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "ExcludeWUDriversInQualityUpdate" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar offering of drivers through Windows Update
 Function EnableUpdateDriver {
-	Write-Output "Habilitando driver offering through Windows Update..."
+	Write-Output "Habilitando driver offering through Windows Update..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata" -Name "PreventDeviceMetadataFromNetwork" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Name "DontPromptForWindowsUpdate" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Name "DontSearchWindowsUpdate" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Name "DriverUpdateWizardWuSearchEnabled" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "ExcludeWUDriversInQualityUpdate" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Windows Update automatic restart
 # Note: This doesn't disable the need for the restart but rather tries to ensure that the restart doesn't happen in the least expected moment. Allow the machine to restart as soon as possible anyway.
 Function DisableUpdateRestart {
-	Write-Output "Deshabilitando Windows Update automatic restart..."
+	Write-Output "Deshabilitando Windows Update automatic restart..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoRebootWithLoggedOnUsers" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUPowerManagement" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Windows Update automatic restart
 Function EnableUpdateRestart {
-	Write-Output "Habilitando Windows Update automatic restart..."
+	Write-Output "Habilitando Windows Update automatic restart..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoRebootWithLoggedOnUsers" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUPowerManagement" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Stop and disable Home Groups services - Not applicable to 1803 and newer or Server
 Function DisableHomeGroups {
-	Write-Output "Stopping and disabling Home Groups services..."
+	Write-Output "Stopping and disabling Home Groups services..." -ForegroundColor white -BackgroundColor red
 	Stop-Service "HomeGroupListener" -WarningAction SilentlyContinue
 	Set-Service "HomeGroupListener" -StartupType Disabled
 	Stop-Service "HomeGroupProvider" -WarningAction SilentlyContinue
 	Set-Service "HomeGroupProvider" -StartupType Disabled
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar and start Home Groups services - Not applicable to 1803 and newer or Server
 Function EnableHomeGroups {
-	Write-Output "Starting and enabling Home Groups services..."
+	Write-Output "Starting and enabling Home Groups services..." -ForegroundColor white -BackgroundColor red
 	Set-Service "HomeGroupListener" -StartupType Manual
 	Set-Service "HomeGroupProvider" -StartupType Manual
 	Start-Service "HomeGroupProvider" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Shared Experiences - Not applicable to Server
 Function DisableSharedExperiences {
-	Write-Output "Deshabilitando Shared Experiences..."
+	Write-Output "Deshabilitando Shared Experiences..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableCdp" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableMmx" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Shared Experiences - Not applicable to Server
 Function EnableSharedExperiences {
-	Write-Output "Habilitando Shared Experiences..."
+	Write-Output "Habilitando Shared Experiences..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableCdp" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableMmx" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Remote Assistance - Not applicable to Server (unless Remote Assistance is explicitly installed)
 Function DisableRemoteAssistance {
-	Write-Output "Deshabilitando Remote Assistance..."
+	Write-Output "Deshabilitando Remote Assistance..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance" -Name "fAllowToGetHelp" -Type DWord -Value 0
 	[System.Console]::Beep()
 }
 
 # Habilitar Remote Assistance - Not applicable to Server (unless Remote Assistance is explicitly installed)
 Function EnableRemoteAssistance {
-	Write-Output "Habilitando Remote Assistance..."
+	Write-Output "Habilitando Remote Assistance..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance" -Name "fAllowToGetHelp" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Remote Desktop w/o Network Level Authentication
 Function EnableRemoteDesktop {
-	Write-Output "Habilitando Remote Desktop w/o Network Level Authentication..."
+	Write-Output "Habilitando Remote Desktop w/o Network Level Authentication..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Type DWord -Value 0
 	Enable-NetFirewallRule -Name "RemoteDesktop*"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Remote Desktop
 Function DisableRemoteDesktop {
-	Write-Output "Deshabilitando Remote Desktop..."
+	Write-Output "Deshabilitando Remote Desktop..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Type DWord -Value 1
 	Disable-NetFirewallRule -Name "RemoteDesktop*"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Autoplay
 Function DisableAutoplay {
-	Write-Output "Deshabilitando Autoplay..."
+	Write-Output "Deshabilitando Autoplay..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers" -Name "DisableAutoplay" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Autoplay
 Function EnableAutoplay {
-	Write-Output "Habilitando Autoplay..."
+	Write-Output "Habilitando Autoplay..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers" -Name "DisableAutoplay" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Autorun for all drives
 Function DisableAutorun {
-	Write-Output "Deshabilitando Autorun for all drives..."
+	Write-Output "Deshabilitando Autorun for all drives..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "NoDriveTypeAutoRun" -Type DWord -Value 255
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Autorun for removable drives
 Function EnableAutorun {
-	Write-Output "Habilitando Autorun for all drives..."
+	Write-Output "Habilitando Autorun for all drives..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "NoDriveTypeAutoRun" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Storage Sense - automatic disk cleanup - Not applicable to Server
 Function EnableStorageSense {
-	Write-Output "Habilitando Storage Sense..."
+	Write-Output "Habilitando Storage Sense..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Force | Out-Null
 	}
@@ -1124,60 +1231,68 @@ Function EnableStorageSense {
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Name "32" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Name "StoragePoliciesNotified" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Storage Sense - Not applicable to Server
 Function DisableStorageSense {
-	Write-Output "Deshabilitando Storage Sense..."
+	Write-Output "Deshabilitando Storage Sense..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar scheduled defragmentation task
 Function DisableDefragmentation {
-	Write-Output "Deshabilitando scheduled defragmentation..."
+	Write-Output "Deshabilitando scheduled defragmentation..." -ForegroundColor white -BackgroundColor red
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Defrag\ScheduledDefrag" | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar scheduled defragmentation task
 Function EnableDefragmentation {
-	Write-Output "Habilitando scheduled defragmentation..."
+	Write-Output "Habilitando scheduled defragmentation..." -ForegroundColor white -BackgroundColor red
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Defrag\ScheduledDefrag" | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Stop and disable Superfetch service - Not applicable to Server
 Function DisableSuperfetch {
-	Write-Output "Stopping and disabling Superfetch service..."
+	Write-Output "Stopping and disabling Superfetch service..." -ForegroundColor white -BackgroundColor red
 	Stop-Service "SysMain" -WarningAction SilentlyContinue
 	Set-Service "SysMain" -StartupType Disabled
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Start and enable Superfetch service - Not applicable to Server
 Function EnableSuperfetch {
-	Write-Output "Starting and enabling Superfetch service..."
+	Write-Output "Starting and enabling Superfetch service..." -ForegroundColor white -BackgroundColor red
 	Set-Service "SysMain" -StartupType Automatic
 	Start-Service "SysMain" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Stop and disable Windows Search indexing service
 Function DisableIndexing {
-	Write-Output "Stopping and disabling Windows Search indexing service..."
+	Write-Output "Stopping and disabling Windows Search indexing service..." -ForegroundColor white -BackgroundColor red
 	Stop-Service "WSearch" -WarningAction SilentlyContinue
 	Set-Service "WSearch" -StartupType Disabled
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Start and enable Windows Search indexing service
 Function EnableIndexing {
-	Write-Output "Starting and enabling Windows Search indexing service..."
+	Write-Output "Starting and enabling Windows Search indexing service..." -ForegroundColor white -BackgroundColor red
 	Set-Service "WSearch" -StartupType Automatic
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WSearch" -Name "DelayedAutoStart" -Type DWord -Value 1
 	Start-Service "WSearch" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set BIOS time to UTC
@@ -1189,36 +1304,39 @@ Function SetBIOSTimeUTC {
 
 # Set BIOS time to local time
 Function SetBIOSTimeLocal {
-	Write-Output "Setting BIOS time to Local time..."
+	Write-Output "Setting BIOS time to Local time..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" -Name "RealTimeIsUniversal" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Hibernation - Do not use on Server with automatically started Hyper-V hvboot service as it may lead to BSODs (Win10 with Hyper-V is fine)
 Function EnableHibernation {
-	Write-Output "Habilitando Hibernation..."
+	Write-Output "Habilitando Hibernation..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Power" -Name "HibernteEnabled" -Type Dword -Value 1
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" -Name "ShowHibernateOption" -Type Dword -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Hibernation
 Function DisableHibernation {
-	Write-Output "Deshabilitando Hibernation..."
+	Write-Output "Deshabilitando Hibernation..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Power" -Name "HibernteEnabled" -Type Dword -Value 0
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" -Name "ShowHibernateOption" -Type Dword -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Sleep start menu and keyboard button
 Function DisableSleepButton {
-	Write-Output "Deshabilitando Sleep start menu and keyboard button..."
+	Write-Output "Deshabilitando Sleep start menu and keyboard button..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" | Out-Null
 	}
@@ -1226,11 +1344,12 @@ Function DisableSleepButton {
 	powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 0
 	powercfg /SETDCVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Sleep start menu and keyboard button
 Function EnableSleepButton {
-	Write-Output "Habilitando Sleep start menu and keyboard button..."
+	Write-Output "Habilitando Sleep start menu and keyboard button..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" | Out-Null
 	}
@@ -1238,40 +1357,45 @@ Function EnableSleepButton {
 	powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 1
 	powercfg /SETDCVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar display and sleep mode timeouts
 Function DisableSleepTimeout {
-	Write-Output "Deshabilitando display and sleep mode timeouts..."
+	Write-Output "Deshabilitando display and sleep mode timeouts..." -ForegroundColor white -BackgroundColor red
 	powercfg /X monitor-timeout-ac 0
 	powercfg /X monitor-timeout-dc 0
 	powercfg /X standby-timeout-ac 0
 	powercfg /X standby-timeout-dc 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar display and sleep mode timeouts
 Function EnableSleepTimeout {
-	Write-Output "Habilitando display and sleep mode timeouts..."
+	Write-Output "Habilitando display and sleep mode timeouts..." -ForegroundColor white -BackgroundColor red
 	powercfg /X monitor-timeout-ac 10
 	powercfg /X monitor-timeout-dc 5
 	powercfg /X standby-timeout-ac 30
 	powercfg /X standby-timeout-dc 15
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Fast Startup
 Function DisableFastStartup {
-	Write-Output "Deshabilitando Fast Startup..."
+	Write-Output "Deshabilitando Fast Startup..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name "HiberbootEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Fast Startup
 Function EnableFastStartup {
-	Write-Output "Habilitando Fast Startup..."
+	Write-Output "Habilitando Fast Startup..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name "HiberbootEnabled" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 
@@ -1282,43 +1406,47 @@ Function EnableFastStartup {
 
 # Deshabilitar Action Center
 Function DisableActionCenter {
-	Write-Output "Deshabilitando Action Center..."
+	Write-Output "Deshabilitando Action Center..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer")) {
 		New-Item -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "DisableNotificationCenter" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Action Center
 Function EnableActionCenter {
-	Write-Output "Habilitando Action Center..."
+	Write-Output "Habilitando Action Center..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "DisableNotificationCenter" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Lock screen
 Function DisableLockScreen {
-	Write-Output "Deshabilitando Lock screen..."
+	Write-Output "Deshabilitando Lock screen..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Lock screen
 Function EnableLockScreen {
-	Write-Output "Habilitando Lock screen..."
+	Write-Output "Habilitando Lock screen..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Lock screen (Anniversary Update workaround) - Applicable to 1607 - 1803 (The GPO used in DisableLockScreen has been fixed again in 1803)
 Function DisableLockScreenRS1 {
-	Write-Output "Deshabilitando Lock screen using scheduler workaround..."
+	Write-Output "Deshabilitando Lock screen using scheduler workaround..." -ForegroundColor white -BackgroundColor red
 	$service = New-Object -com Schedule.Service
 	$service.Connect()
 	$task = $service.NewTask(0)
@@ -1331,60 +1459,68 @@ Function DisableLockScreenRS1 {
 	$action.Arguments = "add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\SessionData /t REG_DWORD /v AllowLockScreen /d 0 /f"
 	$service.GetFolder("\").RegisterTaskDefinition("Disable LockScreen", $task, 6, "NT AUTHORITY\SYSTEM", $null, 4) | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Lock screen (Anniversary Update workaround) - Applicable to 1607 - 1803
 Function EnableLockScreenRS1 {
-	Write-Output "Habilitando Lock screen (removing scheduler workaround)..."
+	Write-Output "Habilitando Lock screen (removing scheduler workaround)..." -ForegroundColor white -BackgroundColor red
 	Unregister-ScheduledTask -TaskName "Disable LockScreen" -Confirm:$false -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide network options from Lock Screen
 Function HideNetworkFromLockScreen {
-	Write-Output "Hiding network options from Lock Screen..."
+	Write-Output "Hiding network options from Lock Screen..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DontDisplayNetworkSelectionUI" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show network options on lock screen
 Function ShowNetworkOnLockScreen {
-	Write-Output "Showing network options on Lock Screen..."
+	Write-Output "Showing network options on Lock Screen..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DontDisplayNetworkSelectionUI" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide shutdown options from Lock Screen
 Function HideShutdownFromLockScreen {
-	Write-Output "Hiding shutdown options from Lock Screen..."
+	Write-Output "Hiding shutdown options from Lock Screen..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ShutdownWithoutLogon" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show shutdown options on lock screen
 Function ShowShutdownOnLockScreen {
-	Write-Output "Showing shutdown options on Lock Screen..."
+	Write-Output "Showing shutdown options on Lock Screen..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ShutdownWithoutLogon" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Sticky keys prompt
 Function DisableStickyKeys {
-	Write-Output "Deshabilitando Sticky keys prompt..."
+	Write-Output "Deshabilitando Sticky keys prompt..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name "Flags" -Type String -Value "506"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Sticky keys prompt
 Function EnableStickyKeys {
-	Write-Output "Habilitando Sticky keys prompt..."
+	Write-Output "Habilitando Sticky keys prompt..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name "Flags" -Type String -Value "510"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Task Manager details - Applicable to 1607 and later - Although this functionality exist even in earlier versions, the Task Manager's behavior is different there and is not compatible with this tweak
 Function ShowTaskManagerDetails {
-	Write-Output "Showing task manager details..."
+	Write-Output "Showing task manager details..." -ForegroundColor white -BackgroundColor red
 	$taskmgr = Start-Process -WindowStyle Hidden -FilePath taskmgr.exe -PassThru
 	Do {
 		Start-Sleep -Milliseconds 100
@@ -1394,221 +1530,248 @@ Function ShowTaskManagerDetails {
 	$preferences.Preferences[28] = 0
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager" -Name "Preferences" -Type Binary -Value $preferences.Preferences
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Task Manager details
 Function HideTaskManagerDetails {
-	Write-Output "Hiding task manager details..."
+	Write-Output "Hiding task manager details..." -ForegroundColor white -BackgroundColor red
 	$preferences = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager" -Name "Preferences" -ErrorAction SilentlyContinue
 	If ($preferences) {
 		$preferences.Preferences[28] = 1
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager" -Name "Preferences" -Type Binary -Value $preferences.Preferences
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show file operations details
 Function ShowFileOperationsDetails {
-	Write-Output "Showing file operations details..."
+	Write-Output "Showing file operations details..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide file operations details
 Function HideFileOperationsDetails {
-	Write-Output "Hiding file operations details..."
+	Write-Output "Hiding file operations details..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar file delete confirmation dialog
 Function EnableFileDeleteConfirm {
-	Write-Output "Habilitando file delete confirmation dialog..."
+	Write-Output "Habilitando file delete confirmation dialog..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
 		New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "ConfirmFileDelete" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar file delete confirmation dialog
 Function DisableFileDeleteConfirm {
-	Write-Output "Deshabilitando file delete confirmation dialog..."
+	Write-Output "Deshabilitando file delete confirmation dialog..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "ConfirmFileDelete" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Taskbar Search icon / box
 Function HideTaskbarSearch {
-	Write-Output "Hiding Taskbar Search icon / box..."
+	Write-Output "Hiding Taskbar Search icon / box..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Taskbar Search icon
 Function ShowTaskbarSearchIcon {
-	Write-Output "Showing Taskbar Search icon..."
+	Write-Output "Showing Taskbar Search icon..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Taskbar Search box
 Function ShowTaskbarSearchBox {
-	Write-Output "Showing Taskbar Search box..."
+	Write-Output "Showing Taskbar Search box..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 2
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Task View button
 Function HideTaskView {
-	Write-Output "Hiding Task View button..."
+	Write-Output "Hiding Task View button..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Task View button
 Function ShowTaskView {
-	Write-Output "Showing Task View button..."
+	Write-Output "Showing Task View button..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show small icons in taskbar
 Function ShowSmallTaskbarIcons {
-	Write-Output "Showing small icons in taskbar..."
+	Write-Output "Showing small icons in taskbar..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show large icons in taskbar
 Function ShowLargeTaskbarIcons {
-	Write-Output "Showing large icons in taskbar..."
+	Write-Output "Showing large icons in taskbar..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set taskbar buttons to show labels and combine when taskbar is full
 Function SetTaskbarCombineWhenFull {
-	Write-Output "Setting taskbar buttons to combine when taskbar is full..."
+	Write-Output "Setting taskbar buttons to combine when taskbar is full..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set taskbar buttons to show labels and never combine
 Function SetTaskbarCombineNever {
-	Write-Output "Setting taskbar buttons to never combine..."
+	Write-Output "Setting taskbar buttons to never combine..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 2
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set taskbar buttons to always combine and hide labels
 Function SetTaskbarCombineAlways {
-	Write-Output "Setting taskbar buttons to always combine, hide labels..."
+	Write-Output "Setting taskbar buttons to always combine, hide labels..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Taskbar People icon
 Function HideTaskbarPeopleIcon {
-	Write-Output "Hiding People icon..."
+	Write-Output "Hiding People icon..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Taskbar People icon
 Function ShowTaskbarPeopleIcon {
-	Write-Output "Showing People icon..."
+	Write-Output "Showing People icon..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show all tray icons
 Function ShowTrayIcons {
-	Write-Output "Showing all tray icons..."
+	Write-Output "Showing all tray icons..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide tray icons as needed
 Function HideTrayIcons {
-	Write-Output "Hiding tray icons..."
+	Write-Output "Hiding tray icons..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar search for app in store for unknown extensions
 Function DisableSearchAppInStore {
-	Write-Output "Deshabilitando search for app in store for unknown extensions..."
+	Write-Output "Deshabilitando search for app in store for unknown extensions..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoUseStoreOpenWith" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar search for app in store for unknown extensions
 Function EnableSearchAppInStore {
-	Write-Output "Habilitando search for app in store for unknown extensions..."
+	Write-Output "Habilitando search for app in store for unknown extensions..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoUseStoreOpenWith" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar 'How do you want to open this file?' prompt
 Function DisableNewAppPrompt {
-	Write-Output "Deshabilitando 'How do you want to open this file?' prompt..."
+	Write-Output "Deshabilitando 'How do you want to open this file?' prompt..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoNewAppAlert" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar 'How do you want to open this file?' prompt
 Function EnableNewAppPrompt {
-	Write-Output "Habilitando 'How do you want to open this file?' prompt..."
+	Write-Output "Habilitando 'How do you want to open this file?' prompt..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoNewAppAlert" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set Control Panel view to Small icons (Classic)
 Function SetControlPanelSmallIcons {
-	Write-Output "Setting Control Panel view to small icons..."
+	Write-Output "Setting Control Panel view to small icons..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel")) {
 		New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "StartupPage" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "AllItemsIconView" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set Control Panel view to Large icons (Classic)
 Function SetControlPanelLargeIcons {
-	Write-Output "Setting Control Panel view to large icons..."
+	Write-Output "Setting Control Panel view to large icons..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel")) {
 		New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "StartupPage" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "AllItemsIconView" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set Control Panel view to categories
 Function SetControlPanelCategories {
-	Write-Output "Setting Control Panel view to categories..."
+	Write-Output "Setting Control Panel view to categories..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "StartupPage" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "AllItemsIconView" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Adjusts visual effects for performance - Disables animations, transparency etc. but leaves font smoothing and miniatures enabled
 Function SetVisualFXPerformance {
-	Write-Output "Adjusting visual effects for performance..."
+	Write-Output "Adjusting visual effects for performance..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "DragFullWindows" -Type String -Value 0
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "MenuShowDelay" -Type String -Value 0
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Type Binary -Value ([byte[]](144,18,3,128,16,0,0,0))
@@ -1620,11 +1783,12 @@ Function SetVisualFXPerformance {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Type DWord -Value 3
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\DWM" -Name "EnableAeroPeek" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Adjusts visual effects for appearance
 Function SetVisualFXAppearance {
-	Write-Output "Adjusting visual effects for appearance..."
+	Write-Output "Adjusting visual effects for appearance..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "DragFullWindows" -Type String -Value 1
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "MenuShowDelay" -Type String -Value 400
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Type Binary -Value ([byte[]](158,30,7,128,18,0,0,0))
@@ -1636,28 +1800,31 @@ Function SetVisualFXAppearance {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Type DWord -Value 3
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\DWM" -Name "EnableAeroPeek" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Add secondary en-US keyboard
 Function AddENKeyboard {
-	Write-Output "Adding secondary en-US keyboard..."
+	Write-Output "Adding secondary en-US keyboard..." -ForegroundColor white -BackgroundColor red
 	$langs = Get-WinUserLanguageList
 	$langs.Add("en-US")
 	Set-WinUserLanguageList $langs -Force
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Remove secondary en-US keyboard
 Function RemoveENKeyboard {
-	Write-Output "Removing secondary en-US keyboard..."
+	Write-Output "Removing secondary en-US keyboard..." -ForegroundColor white -BackgroundColor red
 	$langs = Get-WinUserLanguageList
 	Set-WinUserLanguageList ($langs | ? {$_.LanguageTag -ne "en-US"}) -Force
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar NumLock after startup
 Function EnableNumlock {
-	Write-Output "Habilitando NumLock after startup..."
+	Write-Output "Habilitando NumLock after startup..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKU:")) {
 		New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS | Out-Null
 	}
@@ -1668,11 +1835,12 @@ Function EnableNumlock {
 		$wsh.SendKeys('{NUMLOCK}')
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar NumLock after startup
 Function DisableNumlock {
-	Write-Output "Deshabilitando NumLock after startup..."
+	Write-Output "Deshabilitando NumLock after startup..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKU:")) {
 		New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS | Out-Null
 	}
@@ -1683,6 +1851,7 @@ Function DisableNumlock {
 		$wsh.SendKeys('{NUMLOCK}')
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 
@@ -1693,79 +1862,89 @@ Function DisableNumlock {
 
 # Show known file extensions
 Function ShowKnownExtensions {
-	Write-Output "Showing known file extensions..."
+	Write-Output "Showing known file extensions..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide known file extensions
 Function HideKnownExtensions {
-	Write-Output "Hiding known file extensions..."
+	Write-Output "Hiding known file extensions..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show hidden files
 Function ShowHiddenFiles {
-	Write-Output "Showing hidden files..."
+	Write-Output "Showing hidden files..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide hidden files
 Function HideHiddenFiles {
-	Write-Output "Hiding hidden files..."
+	Write-Output "Hiding hidden files..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 2
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide sync provider notifications
 Function HideSyncNotifications {
-	Write-Output "Hiding sync provider notifications..."
+	Write-Output "Hiding sync provider notifications..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show sync provider notifications
 Function ShowSyncNotifications {
-	Write-Output "Showing sync provider notifications..."
+	Write-Output "Showing sync provider notifications..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide recently and frequently used item shortcuts in Explorer
 Function HideRecentShortcuts {
-	Write-Output "Hiding recent shortcuts..."
+	Write-Output "Hiding recent shortcuts..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowRecent" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowFrequent" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show recently and frequently used item shortcuts in Explorer
 Function ShowRecentShortcuts {
-	Write-Output "Showing recent shortcuts..."
+	Write-Output "Showing recent shortcuts..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowRecent" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowFrequent" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Change default Explorer view to This PC
 Function SetExplorerThisPC {
-	Write-Output "Changing default Explorer view to This PC..."
+	Write-Output "Changing default Explorer view to This PC..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Change default Explorer view to Quick Access
 Function SetExplorerQuickAccess {
-	Write-Output "Changing default Explorer view to Quick Access..."
+	Write-Output "Changing default Explorer view to Quick Access..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show This PC shortcut on desktop
 Function ShowThisPCOnDesktop {
-	Write-Output "Showing This PC shortcut on desktop..."
+	Write-Output "Showing This PC shortcut on desktop..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Force | Out-Null
 	}
@@ -1775,19 +1954,21 @@ Function ShowThisPCOnDesktop {
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide This PC shortcut from desktop
 Function HideThisPCFromDesktop {
-	Write-Output "Hiding This PC shortcut from desktop..."
+	Write-Output "Hiding This PC shortcut from desktop..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show User Folder shortcut on desktop
 Function ShowUserFolderOnDesktop {
-	Write-Output "Showing User Folder shortcut on desktop..."
+	Write-Output "Showing User Folder shortcut on desktop..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Force | Out-Null
 	}
@@ -1797,59 +1978,66 @@ Function ShowUserFolderOnDesktop {
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide User Folder shortcut from desktop
 Function HideUserFolderFromDesktop {
-	Write-Output "Hiding User Folder shortcut from desktop..."
+	Write-Output "Hiding User Folder shortcut from desktop..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Desktop icon from This PC - The icon remains in personal folders and open/save dialogs
 Function HideDesktopFromThisPC {
-	Write-Output "Hiding Desktop icon from This PC..."
+	Write-Output "Hiding Desktop icon from This PC..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Desktop icon in This PC
 Function ShowDesktopInThisPC {
-	Write-Output "Showing Desktop icon in This PC..."
+	Write-Output "Showing Desktop icon in This PC..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}" | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Desktop icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
 Function HideDesktopFromExplorer {
-	Write-Output "Hiding Desktop icon from Explorer namespace..."
+	Write-Output "Hiding Desktop icon from Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Desktop icon in Explorer namespace
 Function ShowDesktopInExplorer {
-	Write-Output "Showing Desktop icon in Explorer namespace..."
+	Write-Output "Showing Desktop icon in Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Documents icon from This PC - The icon remains in personal folders and open/save dialogs
 Function HideDocumentsFromThisPC {
-	Write-Output "Hiding Documents icon from This PC..."
+	Write-Output "Hiding Documents icon from This PC..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Documents icon in This PC
 Function ShowDocumentsInThisPC {
-	Write-Output "Showing Documents icon in This PC..."
+	Write-Output "Showing Documents icon in This PC..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af}")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af}" | Out-Null
 	}
@@ -1857,35 +2045,39 @@ Function ShowDocumentsInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}" | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Documents icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
 Function HideDocumentsFromExplorer {
-	Write-Output "Hiding Documents icon from Explorer namespace..."
+	Write-Output "Hiding Documents icon from Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Documents icon in Explorer namespace
 Function ShowDocumentsInExplorer {
-	Write-Output "Showing Documents icon in Explorer namespace..."
+	Write-Output "Showing Documents icon in Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Downloads icon from This PC - The icon remains in personal folders and open/save dialogs
 Function HideDownloadsFromThisPC {
-	Write-Output "Hiding Downloads icon from This PC..."
+	Write-Output "Hiding Downloads icon from This PC..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{374DE290-123F-4565-9164-39C4925E467B}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Downloads icon in This PC
 Function ShowDownloadsInThisPC {
-	Write-Output "Showing Downloads icon in This PC..."
+	Write-Output "Showing Downloads icon in This PC..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}" | Out-Null
 	}
@@ -1893,35 +2085,39 @@ Function ShowDownloadsInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{374DE290-123F-4565-9164-39C4925E467B}" | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Downloads icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
 Function HideDownloadsFromExplorer {
-	Write-Output "Hiding Downloads icon from Explorer namespace..."
+	Write-Output "Hiding Downloads icon from Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Downloads icon in Explorer namespace
 Function ShowDownloadsInExplorer {
-	Write-Output "Showing Downloads icon in Explorer namespace..."
+	Write-Output "Showing Downloads icon in Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Music icon from This PC - The icon remains in personal folders and open/save dialogs
 Function HideMusicFromThisPC {
-	Write-Output "Hiding Music icon from This PC..."
+	Write-Output "Hiding Music icon from This PC..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{1CF1260C-4DD0-4ebb-811F-33C572699FDE}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Music icon in This PC
 Function ShowMusicInThisPC {
-	Write-Output "Showing Music icon in This PC..."
+	Write-Output "Showing Music icon in This PC..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}" | Out-Null
 	}
@@ -1929,35 +2125,39 @@ Function ShowMusicInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{1CF1260C-4DD0-4ebb-811F-33C572699FDE}" | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Music icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
 Function HideMusicFromExplorer {
-	Write-Output "Hiding Music icon from Explorer namespace..."
+	Write-Output "Hiding Music icon from Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Music icon in Explorer namespace
 Function ShowMusicInExplorer {
-	Write-Output "Showing Music icon in Explorer namespace..."
+	Write-Output "Showing Music icon in Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Pictures icon from This PC - The icon remains in personal folders and open/save dialogs
 Function HidePicturesFromThisPC {
-	Write-Output "Hiding Pictures icon from This PC..."
+	Write-Output "Hiding Pictures icon from This PC..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Pictures icon in This PC
 Function ShowPicturesInThisPC {
-	Write-Output "Showing Pictures icon in This PC..."
+	Write-Output "Showing Pictures icon in This PC..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}" | Out-Null
 	}
@@ -1965,35 +2165,39 @@ Function ShowPicturesInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}" | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Pictures icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
 Function HidePicturesFromExplorer {
-	Write-Output "Hiding Pictures icon from Explorer namespace..."
+	Write-Output "Hiding Pictures icon from Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Pictures icon in Explorer namespace
 Function ShowPicturesInExplorer {
-	Write-Output "Showing Pictures icon in Explorer namespace..."
+	Write-Output "Showing Pictures icon in Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Videos icon from This PC - The icon remains in personal folders and open/save dialogs
 Function HideVideosFromThisPC {
-	Write-Output "Hiding Videos icon from This PC..."
+	Write-Output "Hiding Videos icon from This PC..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A0953C92-50DC-43bf-BE83-3742FED03C9C}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Videos icon in This PC
 Function ShowVideosInThisPC {
-	Write-Output "Showing Videos icon in This PC..."
+	Write-Output "Showing Videos icon in This PC..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}" | Out-Null
 	}
@@ -2001,43 +2205,48 @@ Function ShowVideosInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A0953C92-50DC-43bf-BE83-3742FED03C9C}" | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Videos icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
 Function HideVideosFromExplorer {
-	Write-Output "Hiding Videos icon from Explorer namespace..."
+	Write-Output "Hiding Videos icon from Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show Videos icon in Explorer namespace
 Function ShowVideosInExplorer {
-	Write-Output "Showing Videos icon in Explorer namespace..."
+	Write-Output "Showing Videos icon in Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide 3D Objects icon from This PC - The icon remains in personal folders and open/save dialogs
 Function Hide3DObjectsFromThisPC {
-	Write-Output "Hiding 3D Objects icon from This PC..."
+	Write-Output "Hiding 3D Objects icon from This PC..." -ForegroundColor white -BackgroundColor red
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show 3D Objects icon in This PC
 Function Show3DObjectsInThisPC {
-	Write-Output "Showing 3D Objects icon in This PC..."
+	Write-Output "Showing 3D Objects icon in This PC..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide 3D Objects icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
 Function Hide3DObjectsFromExplorer {
-	Write-Output "Hiding 3D Objects icon from Explorer namespace..."
+	Write-Output "Hiding 3D Objects icon from Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Force | Out-Null
 	}
@@ -2047,44 +2256,50 @@ Function Hide3DObjectsFromExplorer {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Show 3D Objects icon in Explorer namespace
 Function Show3DObjectsInExplorer {
-	Write-Output "Showing 3D Objects icon in Explorer namespace..."
+	Write-Output "Showing 3D Objects icon in Explorer namespace..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar thumbnails, show only file extension icons
 Function DisableThumbnails {
-	Write-Output "Deshabilitando thumbnails..."
+	Write-Output "Deshabilitando thumbnails..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "IconsOnly" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar thumbnails
 Function EnableThumbnails {
-	Write-Output "Habilitando thumbnails..."
+	Write-Output "Habilitando thumbnails..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "IconsOnly" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar creation of Thumbs.db thumbnail cache files
 Function DisableThumbsDB {
-	Write-Output "Deshabilitando creation of Thumbs.db..."
+	Write-Output "Deshabilitando creation of Thumbs.db..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbnailCache" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbsDBOnNetworkFolders" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar creation of Thumbs.db thumbnail cache files
 Function EnableThumbsDB {
-	Write-Output "Enable creation of Thumbs.db..."
+	Write-Output "Enable creation of Thumbs.db..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbnailCache" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbsDBOnNetworkFolders" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 
@@ -2095,24 +2310,26 @@ Function EnableThumbsDB {
 
 # Deshabilitar OneDrive
 Function DisableOneDrive {
-	Write-Output "Deshabilitando OneDrive..."
+	Write-Output "Deshabilitando OneDrive..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableFileSyncNGSC" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar OneDrive
 Function EnableOneDrive {
-	Write-Output "Habilitando OneDrive..."
+	Write-Output "Habilitando OneDrive..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableFileSyncNGSC" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall OneDrive - Not applicable to Server
 Function UninstallOneDrive {
-	Write-Output "Uninstalling OneDrive..."
+	Write-Output "Uninstalling OneDrive..." -ForegroundColor white -BackgroundColor red
 	Stop-Process -Name "OneDrive" -ErrorAction SilentlyContinue
 	Start-Sleep -s 2
 	$onedrive = "$env:SYSTEMROOT\SysWOW64\OneDriveSetup.exe"
@@ -2133,22 +2350,24 @@ Function UninstallOneDrive {
 	Remove-Item -Path "HKCR:\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKCR:\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install OneDrive - Not applicable to Server
 Function InstallOneDrive {
-	Write-Output "Installing OneDrive..."
+	Write-Output "Installing OneDrive..." -ForegroundColor white -BackgroundColor red
 	$onedrive = "$env:SYSTEMROOT\SysWOW64\OneDriveSetup.exe"
 	If (!(Test-Path $onedrive)) {
 		$onedrive = "$env:SYSTEMROOT\System32\OneDriveSetup.exe"
 	}
 	Start-Process $onedrive -NoNewWindow
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall default Microsoft applications
 Function UninstallMsftBloat {
-	Write-Output "Uninstalling default Microsoft applications..."
+	Write-Output "Uninstalling default Microsoft applications..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage "Microsoft.3DBuilder" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.AppConnector" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.BingFinance" | Remove-AppxPackage
@@ -2188,11 +2407,12 @@ Function UninstallMsftBloat {
 	Get-AppxPackage "Microsoft.ZuneMusic" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.ZuneVideo" | Remove-AppxPackage
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install default Microsoft applications
 Function InstallMsftBloat {
-	Write-Output "Installing default Microsoft applications..."
+	Write-Output "Installing default Microsoft applications..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage -AllUsers "Microsoft.3DBuilder" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.AppConnector" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.BingFinance" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
@@ -2232,6 +2452,7 @@ Function InstallMsftBloat {
 	Get-AppxPackage -AllUsers "Microsoft.ZuneMusic" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.ZuneVideo" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # In case you have removed them for good, you can try to restore the files using installation medium as follows
@@ -2243,7 +2464,7 @@ Function InstallMsftBloat {
 
 # Uninstall default third party applications
 function UninstallThirdPartyBloat {
-	Write-Output "Uninstalling default third party applications..."
+	Write-Output "Uninstalling default third party applications..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage "2414FC7A.Viber" | Remove-AppxPackage
 	Get-AppxPackage "41038Axilesoft.ACGMediaPlayer" | Remove-AppxPackage
 	Get-AppxPackage "46928bounde.EclipseManager" | Remove-AppxPackage
@@ -2274,11 +2495,12 @@ function UninstallThirdPartyBloat {
 	Get-AppxPackage "WinZipComputing.WinZipUniversal" | Remove-AppxPackage
 	Get-AppxPackage "XINGAG.XING" | Remove-AppxPackage
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install default third party applications
 Function InstallThirdPartyBloat {
-	Write-Output "Installing default third party applications..."
+	Write-Output "Installing default third party applications..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage -AllUsers "2414FC7A.Viber" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "41038Axilesoft.ACGMediaPlayer" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "46928bounde.EclipseManager" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
@@ -2309,27 +2531,30 @@ Function InstallThirdPartyBloat {
 	Get-AppxPackage -AllUsers "WinZipComputing.WinZipUniversal" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "XINGAG.XING" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Windows Store
 Function UninstallWindowsStore {
-	Write-Output "Uninstalling Windows Store..."
+	Write-Output "Uninstalling Windows Store..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage "Microsoft.DesktopAppInstaller" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.WindowsStore" | Remove-AppxPackage
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Windows Store
 Function InstallWindowsStore {
-	Write-Output "Installing Windows Store..."
+	Write-Output "Installing Windows Store..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage -AllUsers "Microsoft.DesktopAppInstaller" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.WindowsStore" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Xbox features
 Function DisableXboxFeatures {
-	Write-Output "Deshabilitando Xbox features..."
+	Write-Output "Deshabilitando Xbox features..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage "Microsoft.XboxApp" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.XboxIdentityProvider" | Remove-AppxPackage -ErrorAction SilentlyContinue
 	Get-AppxPackage "Microsoft.XboxSpeechToTextOverlay" | Remove-AppxPackage
@@ -2341,11 +2566,12 @@ Function DisableXboxFeatures {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Xbox features
 Function EnableXboxFeatures {
-	Write-Output "Habilitando Xbox features..."
+	Write-Output "Habilitando Xbox features..." -ForegroundColor white -BackgroundColor red
 	Get-AppxPackage -AllUsers "Microsoft.XboxApp" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.XboxIdentityProvider" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.XboxSpeechToTextOverlay" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
@@ -2354,11 +2580,12 @@ Function EnableXboxFeatures {
 	Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 1
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar built-in Adobe Flash in IE and Edge
 Function DisableAdobeFlash {
-	Write-Output "Deshabilitando built-in Adobe Flash in IE and Edge..."
+	Write-Output "Deshabilitando built-in Adobe Flash in IE and Edge..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer" -Force | Out-Null
 	}
@@ -2368,61 +2595,69 @@ Function DisableAdobeFlash {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Addons" -Name "FlashPlayerEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar built-in Adobe Flash in IE and Edge
 Function EnableAdobeFlash {
-	Write-Output "Habilitando built-in Adobe Flash in IE and Edge..."
+	Write-Output "Habilitando built-in Adobe Flash in IE and Edge..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "DisableFlashInIE" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Addons" -Name "FlashPlayerEnabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Windows Media Player
 Function UninstallMediaPlayer {
-	Write-Output "Uninstalling Windows Media Player..."
+	Write-Output "Uninstalling Windows Media Player..." -ForegroundColor white -BackgroundColor red
 	Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Windows Media Player
 Function InstallMediaPlayer {
-	Write-Output "Installing Windows Media Player..."
+	Write-Output "Installing Windows Media Player..." -ForegroundColor white -BackgroundColor red
 	Enable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Internet Explorer
 Function UninstallInternetExplorer {
-	Write-Output "Uninstalling Internet Explorer..."
+	Write-Output "Uninstalling Internet Explorer..." -ForegroundColor white -BackgroundColor red
 	Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-$env:PROCESSOR_ARCHITECTURE" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Internet Explorer
 Function InstallInternetExplorer {
-	Write-Output "Installing Internet Explorer..."
+	Write-Output "Installing Internet Explorer..." -ForegroundColor white -BackgroundColor red
 	Enable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-$env:PROCESSOR_ARCHITECTURE" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Work Folders Client - Not applicable to Server
 Function UninstallWorkFolders {
-	Write-Output "Uninstalling Work Folders Client..."
+	Write-Output "Uninstalling Work Folders Client..." -ForegroundColor white -BackgroundColor red
 	Disable-WindowsOptionalFeature -Online -FeatureName "WorkFolders-Client" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Work Folders Client - Not applicable to Server
 Function InstallWorkFolders {
-	Write-Output "Installing Work Folders Client..."
+	Write-Output "Installing Work Folders Client..." -ForegroundColor white -BackgroundColor red
 	Enable-WindowsOptionalFeature -Online -FeatureName "WorkFolders-Client" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Linux Subsystem - Applicable to 1607 or newer
 Function InstallLinuxSubsystem {
-	Write-Output "Installing Linux Subsystem..."
+	Write-Output "Installing Linux Subsystem..." -ForegroundColor white -BackgroundColor red
 	If ([System.Environment]::OSVersion.Version.Build -eq 14393) {
 		# 1607 needs developer mode to be enabled
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowDevelopmentWithoutDevLicense" -Type DWord -Value 1
@@ -2430,44 +2665,48 @@ Function InstallLinuxSubsystem {
 	}
 	Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Linux Subsystem - Applicable to 1607 or newer
 Function UninstallLinuxSubsystem {
-	Write-Output "Uninstalling Linux Subsystem..."
+	Write-Output "Uninstalling Linux Subsystem..." -ForegroundColor white -BackgroundColor red
 	If ([System.Environment]::OSVersion.Version.Build -eq 14393) {
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowDevelopmentWithoutDevLicense" -Type DWord -Value 0
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowAllTrustedApps" -Type DWord -Value 0
 	}
 	Disable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Hyper-V - Not applicable to Home
 Function InstallHyperV {
-	Write-Output "Installing Hyper-V..."
+	Write-Output "Installing Hyper-V..." -ForegroundColor white -BackgroundColor red
 	If ((Get-WmiObject -Class "Win32_OperatingSystem").Caption -like "*Server*") {
 		Install-WindowsFeature -Name "Hyper-V" -IncludeManagementTools -WarningAction SilentlyContinue | Out-Null
 	} Else {
 		Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Hyper-V - Not applicable to Home
 Function UninstallHyperV {
-	Write-Output "Uninstalling Hyper-V..."
+	Write-Output "Uninstalling Hyper-V..." -ForegroundColor white -BackgroundColor red
 	If ((Get-WmiObject -Class "Win32_OperatingSystem").Caption -like "*Server*") {
 		Uninstall-WindowsFeature -Name "Hyper-V" -IncludeManagementTools -WarningAction SilentlyContinue | Out-Null
 	} Else {
 		Disable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Set Photo Viewer association for bmp, gif, jpg, png and tif
 Function SetPhotoViewerAssociation {
-	Write-Output "Setting Photo Viewer association for bmp, gif, jpg, png and tif..."
+	Write-Output "Setting Photo Viewer association for bmp, gif, jpg, png and tif..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCR:")) {
 		New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
 	}
@@ -2478,11 +2717,12 @@ Function SetPhotoViewerAssociation {
 		Set-ItemProperty -Path $("HKCR:\$type\shell\open\command") -Name "(Default)" -Type ExpandString -Value "%SystemRoot%\System32\rundll32.exe `"%ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll`", ImageView_Fullscreen %1"
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Unset Photo Viewer association for bmp, gif, jpg, png and tif
 Function UnsetPhotoViewerAssociation {
-	Write-Output "Unsetting Photo Viewer association for bmp, gif, jpg, png and tif..."
+	Write-Output "Unsetting Photo Viewer association for bmp, gif, jpg, png and tif..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCR:")) {
 		New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
 	}
@@ -2494,11 +2734,12 @@ Function UnsetPhotoViewerAssociation {
 	Remove-Item -Path "HKCR:\jpegfile\shell\open" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKCR:\pngfile\shell\open" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Add Photo Viewer to "Open with..."
 Function AddPhotoViewerOpenWith {
-	Write-Output "Adding Photo Viewer to `"Open with...`""
+	Write-Output "Adding Photo Viewer to `"Open with...`"" -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCR:")) {
 		New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
 	}
@@ -2508,58 +2749,66 @@ Function AddPhotoViewerOpenWith {
 	Set-ItemProperty -Path "HKCR:\Applications\photoviewer.dll\shell\open\command" -Name "(Default)" -Type ExpandString -Value "%SystemRoot%\System32\rundll32.exe `"%ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll`", ImageView_Fullscreen %1"
 	Set-ItemProperty -Path "HKCR:\Applications\photoviewer.dll\shell\open\DropTarget" -Name "Clsid" -Type String -Value "{FFE2A43C-56B9-4bf5-9A79-CC6D4285608A}"
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Remove Photo Viewer from "Open with..."
 Function RemovePhotoViewerOpenWith {
-	Write-Output "Removing Photo Viewer from `"Open with...`""
+	Write-Output "Removing Photo Viewer from `"Open with...`"" -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKCR:")) {
 		New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
 	}
 	Remove-Item -Path "HKCR:\Applications\photoviewer.dll\shell\open" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Microsoft Print to PDF
 Function UninstallPDFPrinter {
-	Write-Output "Uninstalling Microsoft Print to PDF..."
+	Write-Output "Uninstalling Microsoft Print to PDF..." -ForegroundColor white -BackgroundColor red
 	Disable-WindowsOptionalFeature -Online -FeatureName "Printing-PrintToPDFServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Microsoft Print to PDF
 Function InstallPDFPrinter {
-	Write-Output "Installing Microsoft Print to PDF..."
+	Write-Output "Installing Microsoft Print to PDF..." -ForegroundColor white -BackgroundColor red
 	Enable-WindowsOptionalFeature -Online -FeatureName "Printing-PrintToPDFServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Uninstall Microsoft XPS Document Writer
 Function UninstallXPSPrinter {
-	Write-Output "Uninstalling Microsoft XPS Document Writer..."
+	Write-Output "Uninstalling Microsoft XPS Document Writer..." -ForegroundColor white -BackgroundColor red
 	Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Install Microsoft XPS Document Writer
 Function InstallXPSPrinter {
-	Write-Output "Installing Microsoft XPS Document Writer..."
+	Write-Output "Installing Microsoft XPS Document Writer..." -ForegroundColor white -BackgroundColor red
 	Enable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Remove Default Fax Printer
 Function RemoveFaxPrinter {
-	Write-Output "Removing Default Fax Printer..."
+	Write-Output "Removing Default Fax Printer..." -ForegroundColor white -BackgroundColor red
 	Remove-Printer -Name "Fax" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Add Default Fax Printer
 Function AddFaxPrinter {
-	Write-Output "Adding Default Fax Printer..."
+	Write-Output "Adding Default Fax Printer..." -ForegroundColor white -BackgroundColor red
 	Add-Printer -Name "Fax" -DriverName "Microsoft Shared Fax Driver" -PortName "SHRFAX:" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 
@@ -2570,104 +2819,116 @@ Function AddFaxPrinter {
 
 # Hide Server Manager after login
 Function HideServerManagerOnLogin {
-	Write-Output "Hiding Server Manager after login..."
+	Write-Output "Hiding Server Manager after login..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Server\ServerManager")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Server\ServerManager" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Server\ServerManager" -Name "DoNotOpenAtLogon" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Hide Server Manager after login
 Function ShowServerManagerOnLogin {
-	Write-Output "Showing Server Manager after login..."
+	Write-Output "Showing Server Manager after login..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Server\ServerManager" -Name "DoNotOpenAtLogon" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Shutdown Event Tracker
 Function DisableShutdownTracker {
-	Write-Output "Deshabilitando Shutdown Event Tracker..."
+	Write-Output "Deshabilitando Shutdown Event Tracker..." -ForegroundColor white -BackgroundColor red
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Reliability")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Reliability" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Reliability" -Name "ShutdownReasonOn" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Shutdown Event Tracker
 Function EnableShutdownTracker {
-	Write-Output "Habilitando Shutdown Event Tracker..."
+	Write-Output "Habilitando Shutdown Event Tracker..." -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Reliability" -Name "ShutdownReasonOn" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar password complexity and maximum age requirements
 Function DisablePasswordPolicy {
-	Write-Output "Deshabilitando password complexity and maximum age requirements..."
+	Write-Output "Deshabilitando password complexity and maximum age requirements..." -ForegroundColor white -BackgroundColor red
 	$tmpfile = New-TemporaryFile
 	secedit /export /cfg $tmpfile /quiet
 	(Get-Content $tmpfile).Replace("PasswordComplexity = 1", "PasswordComplexity = 0").Replace("MaximumPasswordAge = 42", "MaximumPasswordAge = -1") | Out-File $tmpfile
 	secedit /configure /db "$env:SYSTEMROOT\security\database\local.sdb" /cfg $tmpfile /areas SECURITYPOLICY | Out-Null
 	Remove-Item -Path $tmpfile
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar password complexity and maximum age requirements
 Function EnablePasswordPolicy {
-	Write-Output "Habilitando password complexity and maximum age requirements..."
+	Write-Output "Habilitando password complexity and maximum age requirements..." -ForegroundColor white -BackgroundColor red
 	$tmpfile = New-TemporaryFile
 	secedit /export /cfg $tmpfile /quiet
 	(Get-Content $tmpfile).Replace("PasswordComplexity = 0", "PasswordComplexity = 1").Replace("MaximumPasswordAge = -1", "MaximumPasswordAge = 42") | Out-File $tmpfile
 	secedit /configure /db "$env:SYSTEMROOT\security\database\local.sdb" /cfg $tmpfile /areas SECURITYPOLICY | Out-Null
 	Remove-Item -Path $tmpfile
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Ctrl+Alt+Del requirement before login
 Function DisableCtrlAltDelLogin {
-	Write-Output "Deshabilitando Ctrl+Alt+Del requirement before login..."
+	Write-Output "Deshabilitando Ctrl+Alt+Del requirement before login..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "DisableCAD" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Ctrl+Alt+Del requirement before login
 Function EnableCtrlAltDelLogin {
-	Write-Output "Habilitando Ctrl+Alt+Del requirement before login..."
+	Write-Output "Habilitando Ctrl+Alt+Del requirement before login..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "DisableCAD" -Type DWord -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Internet Explorer Enhanced Security Configuration (IE ESC)
 Function DisableIEEnhancedSecurity {
-	Write-Output "Deshabilitando Internet Explorer Enhanced Security Configuration (IE ESC)..."
+	Write-Output "Deshabilitando Internet Explorer Enhanced Security Configuration (IE ESC)..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 0
-
+	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Internet Explorer Enhanced Security Configuration (IE ESC)
 Function EnableIEEnhancedSecurity {
-	Write-Output "Habilitando Internet Explorer Enhanced Security Configuration (IE ESC)..."
+	Write-Output "Habilitando Internet Explorer Enhanced Security Configuration (IE ESC)..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 1
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Habilitar Audio
 Function EnableAudio {
-	Write-Output "Habilitando Audio..."
+	Write-Output "Habilitando Audio..." -ForegroundColor white -BackgroundColor red
 	Set-Service "Audiosrv" -StartupType Automatic
 	Start-Service "Audiosrv" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Deshabilitar Audio
 Function DisableAudio {
-	Write-Output "Deshabilitando Audio..."
+	Write-Output "Deshabilitando Audio..." -ForegroundColor white -BackgroundColor red
 	Stop-Service "Audiosrv" -WarningAction SilentlyContinue
 	Set-Service "Audiosrv" -StartupType Manual
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 
@@ -2678,7 +2939,7 @@ Function DisableAudio {
 
 # Unpin all Start Menu tiles - Note: This function has no counterpart. You have to pin the tiles back manually.
 Function UnpinStartMenuTiles {
-	Write-Output "Unpinning all Start Menu tiles..."
+	Write-Output "Unpinning all Start Menu tiles..." -ForegroundColor white -BackgroundColor red
 	If ([System.Environment]::OSVersion.Version.Build -ge 15063 -And [System.Environment]::OSVersion.Version.Build -le 16299) {
 		Get-ChildItem -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount" -Include "*.group" -Recurse | ForEach-Object {
 			$data = (Get-ItemProperty -Path "$($_.PsPath)\Current" -Name "Data").Data -Join ","
@@ -2691,14 +2952,16 @@ Function UnpinStartMenuTiles {
 		Set-ItemProperty -Path $key.PSPath -Name "Data" -Type Binary -Value $data
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Unpin all Taskbar icons - Note: This function has no counterpart. You have to pin the icons back manually.
 Function UnpinTaskbarIcons {
-	Write-Output "Unpinning all Taskbar icons..."
+	Write-Output "Unpinning all Taskbar icons..." -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites" -Type Binary -Value ([byte[]](255))
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 ##########
@@ -2712,20 +2975,23 @@ Function RequireAdmin {
 		Exit
 	}
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Wait for key press
 Function WaitForKey {
-	Write-Output "Press any key to continue..."
+	Write-Output "Press any key to continue..." -ForegroundColor white -BackgroundColor red
 	[Console]::ReadKey($true) | Out-Null
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 # Restart computer
 Function Restart {
-	Write-Output "Restarting..."
+	Write-Output "Restarting..." -ForegroundColor white -BackgroundColor red
 	Restart-Computer
 	[System.Console]::Beep(1000,300)
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 ###########
@@ -2733,15 +2999,17 @@ Function Restart {
 ###########
 
 Function EnableDarkMode {
-  Write-Output "Habilitando Dark Mode"
+  Write-Output "Habilitando Dark Mode" -ForegroundColor white -BackgroundColor red
 	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 Function DisableDarkMode {
-    Write-Output "Deshabilitando Dark Mode"
+    Write-Output "Deshabilitando Dark Mode" -ForegroundColor white -BackgroundColor red
 	Remove-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 ##########
@@ -2780,6 +3048,7 @@ Function Stop-EdgePDF {
         Set-Item $Edge AppXd4nrz8ff68srnhf9t5a8sbjyar1cr723_ 
     }
 	[System.Console]::Beep()
+	Write-Output "DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 Function DebloatAll {
@@ -2846,6 +3115,7 @@ Function DebloatAll {
         Write-Output "Trying to remove $Bloat."
     }
 	[System.Console]::Beep()
+	Write-Output "DEBLOATING DONE!" -ForegroundColor red -BackgroundColor white
 }
 
 ##########
