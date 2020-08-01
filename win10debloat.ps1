@@ -27,7 +27,6 @@
 #
 #	- Traduccion al español de notas y comentarios
 #	- Agregue notificación auditiva después de instalar o modificar algo
-
 #	- Instalacion de VCL Media Player
 #
 #	Deseas apoyarme para seguir mejorando este proyecto?
