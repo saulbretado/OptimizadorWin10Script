@@ -206,7 +206,7 @@ $tweaks = @(
 #########
 
 Function ProgramasaInstalar {
-	Write-Output "Installing Chocolatey"
+	Write-Output "Instalando Chocolatey..."
 	Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 	choco install chocolatey-core.extension -y
 	Write-Output "Ejecutando O&O Shutup con Configuración Recomendada"
@@ -215,49 +215,49 @@ Function ProgramasaInstalar {
 	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination OOSU10.exe
 	./OOSU10.exe ooshutup10.cfg /quiet
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 Function InstallAdobe {
 	Write-Output "Instalando Adobe Acrobat Reader"
 	choco install adobereader -y
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 Function InstallJava {
 	Write-Output "Instalando Java"
 	choco install jre8 -y
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 Function Install7Zip {
 	Write-Output "Instalando 7-Zip"
 	choco install 7zip -y
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 	Write-Output "Instalando Notepad++"
 Function InstallNotepadplusplus {
 	choco install notepadplusplus -y
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 Function InstallMediaPlayerClassic {
 	Write-Output "Instalando Media Player Classic (VLC Alternative)"
 	choco install mpc-hc -y
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 Function InstallVLCMediaPlayer {
 	Write-Output "Instalando VLC Media Player"
 	choco install vlc -y
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 ##########
@@ -280,7 +280,7 @@ Function DisableTelemetry {
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" | Out-Null
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Telemetría
@@ -296,7 +296,7 @@ Function EnableTelemetry {
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" | Out-Null
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Wi-Fi Sense
@@ -313,7 +313,7 @@ Function DisableWiFiSense {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "AutoConnectAllowedOEM" -Type Dword -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "WiFISenseAllowed" -Type Dword -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Wi-Fi Sense
@@ -327,19 +327,19 @@ Function EnableWiFiSense {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "AutoConnectAllowedOEM" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" -Name "WiFISenseAllowed" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar SmartScreen Filter
 Function DisableSmartScreen {
-	Write-Output "Deshabilitando SmartScreen Filter..."
+	Write-Output "Deshabilitando Filtro SmartScreen..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableSmartScreen" -Type DWord -Value 0
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" -Name "EnabledV9" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Filtro SmartScreen
@@ -348,7 +348,7 @@ Function EnableSmartScreen {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableSmartScreen" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter" -Name "EnabledV9" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Busqueda en Internet en Menú de Inicio
@@ -361,7 +361,7 @@ Function DisableWebSearch {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Busqueda en Internet en Menú de Inicio
@@ -371,7 +371,7 @@ Function EnableWebSearch {
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "CortanaConsent" -Type DWord -Value 1
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar sugerencia de Aplicaciones e instalaciones automaticas
@@ -392,7 +392,7 @@ Function DisableAppSuggestions {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar sugerencia de Aplicaciones e instalaciones automaticas
@@ -410,27 +410,27 @@ Function EnableAppSuggestions {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-353698Enabled" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar Historial de Actividad feed in Task View - Note: The checkbox "Let Windows collect my activities from this PC" remains checked even when the function is disabled
+# Deshabilitar comentarios de Historial de Actividades en la Barra de Tareas - Nota: la casilla de verificación "Permitir que Windows recopile mis actividades de esta PC" permanece marcada incluso cuando la función está desactivada
 Function DisableActivityHistory {
-	Write-Output "Deshabilitando Historial de Actividad..."
+	Write-Output "Deshabilitando Historial de Actividades..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableActivityFeed" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "PublishUserActivities" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "UploadUserActivities" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar Activity History feed in Task View
+# Habilitar comentarios de Historial de Actividades en la Barra de Tareas
 Function EnableActivityHistory {
 	Write-Output "Habilitando Historial de Actividad..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableActivityFeed" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "PublishUserActivities" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "UploadUserActivities" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar accesso de aplicaciones en Segundo Plano - por ejemplo, si aplicaciones pueden descargar o actualizarse cuando no son utilizadas – Costana esta excluida de esta modificación.
@@ -441,7 +441,7 @@ Function DisableBackgroundApps {
 		Set-ItemProperty -Path $_.PsPath -Name "DisabledByUser" -Type DWord -Value 1
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar accesso de Aplicaciones en Segundo Plano
@@ -452,7 +452,7 @@ Function EnableBackgroundApps {
 		Remove-ItemProperty -Path $_.PsPath -Name "DisabledByUser" -ErrorAction SilentlyContinue
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Ubicación
@@ -465,7 +465,7 @@ Function DisableLocationTracking {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Ubicación
@@ -478,7 +478,7 @@ Function EnableLocationTracking {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar actualizaciones automáticas de Maps
@@ -486,7 +486,7 @@ Function DisableMapUpdates {
 	Write-Output "Deshabilitando actualizaciones automáticas de Maps..."
 	Set-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar actualizaciones automáticas de Maps
@@ -494,12 +494,12 @@ Function EnableMapUpdates {
 	Write-Output "Habilitando actualizaciones automáticas de Maps..."
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar Feedback
+# Deshabilitar Comentarios
 Function DisableFeedback {
-	Write-Output "Deshabilitando Feedback..."
+	Write-Output "Deshabilitando Comentarios..."
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Force | Out-Null
 	}
@@ -508,36 +508,36 @@ Function DisableFeedback {
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClient" -ErrorAction SilentlyContinue | Out-Null
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" -ErrorAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar Feedback
+# Habilitar Comentarios
 Function EnableFeedback {
-	Write-Output "Habilitando Feedback..."
+	Write-Output "Habilitando Comentarios..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "DoNotShowFeedbackNotifications" -ErrorAction SilentlyContinue
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClient" -ErrorAction SilentlyContinue | Out-Null
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" -ErrorAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar Tailored Experiences
+# Deshabilitar Experiencias a la Medida
 Function DisableTailoredExperiences {
-	Write-Output "Deshabilitando Tailored Experiences..."
+	Write-Output "Deshabilitando Experiencias a la Medida..."
 	If (!(Test-Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent")) {
 		New-Item -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Force | Out-Null
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableTailoredExperiencesWithDiagnosticData" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar Tailored Experiences
+# Habilitar Experiencias a la Medida
 Function EnableTailoredExperiences {
-	Write-Output "Habilitando Tailored Experiences..."
+	Write-Output "Habilitando Experiencias a la Medida..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableTailoredExperiencesWithDiagnosticData" -ErrorAction SilentlyContinue
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Advertising ID
@@ -548,7 +548,7 @@ Function DisableAdvertisingID {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" -Name "DisabledByGroupPolicy" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Advertising ID
@@ -556,7 +556,7 @@ Function EnableAdvertisingID {
 	Write-Output "Habilitando Advertising ID..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" -Name "DisabledByGroupPolicy" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Cortana
@@ -580,7 +580,7 @@ Function DisableCortana {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "AllowCortana" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Cortana
@@ -595,173 +595,173 @@ Function EnableCortana {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "AllowCortana" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar Error reporting
+# Deshabilitar repostes de Error
 Function DisableErrorReporting {
-	Write-Output "Deshabilitando Error reporting..."
+	Write-Output "Deshabilitando reportes de Error..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -Type DWord -Value 1
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar Error reporting
+# Habilitar reportes de Error
 Function EnableErrorReporting {
-	Write-Output "Habilitando Error reporting..."
+	Write-Output "Habilitando reportes de Error..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -ErrorAction SilentlyContinue
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Restrict Windows Update P2P only to local network - Needed only for 1507 as local P2P is the default since 1511
+# Restringir la actualización de Windows P2P solo a la red local: solo se necesita para 1507, ya que P2P local es el valor predeterminado desde 1511
 Function SetP2PUpdateLocal {
-	Write-Output "Restricting Windows Update P2P only to local network..."
+	Write-Output "Restringir la actualización de Windows P2P solo a la red local..."
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Unrestrict Windows Update P2P
+# Permitir la actualización de Windows P2P solo a la red local
 Function SetP2PUpdateInternet {
-	Write-Output "Unrestricting Windows Update P2P to internet..."
+	Write-Output "Permitir la actualización de Windows P2P solo a la red local..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Stop and disable Diagnostics Tracking Service
+# Detener y deshabilitar el Servicio de seguimiento de diagnósticos
 Function DisableDiagTrack {
 	Write-Output "Stopping and disabling Diagnostics Tracking Service..."
 	Stop-Service "DiagTrack" -WarningAction SilentlyContinue
 	Set-Service "DiagTrack" -StartupType Disabled
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar and start Diagnostics Tracking Service
+# Habilitar y Comenzar el Servicio de Seguimiento de diagnósticos
 Function EnableDiagTrack {
-	Write-Output "Habilitando and starting Diagnostics Tracking Service..."
+	Write-Output "Habilitando y comenzando el Servicio de Seguimiento de Diagnósticos..."
 	Set-Service "DiagTrack" -StartupType Automatic
 	Start-Service "DiagTrack" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Stop and disable WAP Push Service
+# Detener y Deshabilitar el Servicio de WAP Push
 Function DisableWAPPush {
-	Write-Output "Stopping and disabling WAP Push Service..."
+	Write-Output "Deteniendo y deshabilitando el Servicio de WAP Push..."
 	Stop-Service "dmwappushservice" -WarningAction SilentlyContinue
 	Set-Service "dmwappushservice" -StartupType Disabled
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar and start WAP Push Service
+# Habilitar y Comenzar el Servicio de WAP Push
 Function EnableWAPPush {
-	Write-Output "Habilitando and starting WAP Push Service..."
+	Write-Output "Habilitando y comenzando el Servicio de WAP Push..."
 	Set-Service "dmwappushservice" -StartupType Automatic
 	Start-Service "dmwappushservice" -WarningAction SilentlyContinue
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\dmwappushservice" -Name "DelayedAutoStart" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 
 
 ##########
-# Security Tweaks
+# Modificaciones de Seguridad
 ##########
 
-# Lower UAC level (disabling it completely would break apps)
+# Nivel Bajo de UAC (deshabilitandolo completamente podria hacer que aplicaciones fallaran)
 Function SetUACLow {
-	Write-Output "Lowering UAC level..."
+	Write-Output "Bajando nivel UAC..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "PromptOnSecureDesktop" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Raise UAC level
+# Aumentar niveld de UAC
 Function SetUACHigh {
-	Write-Output "Raising UAC level..."
+	Write-Output "Aumentando nivel UAC..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Type DWord -Value 5
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "PromptOnSecureDesktop" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar sharing mapped drives between users
+# Habilitar Compartir Unidades Mapeadas entre Usuarios
 Function EnableSharingMappedDrives {
-	Write-Output "Habilitando sharing mapped drives between users..."
+	Write-Output "Habilitando Compartir Unidades Mapeadas entre Usuarios..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar sharing mapped drives between users
+# Deshabilitar Compartir Unidades Mapeadas entre Usuarios
 Function DisableSharingMappedDrives {
-	Write-Output "Deshabilitando sharing mapped drives between users..."
+	Write-Output "Deshabilitando Compartir Unidades Mapeadas entre Usuarios..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar implicit administrative shares
+# Deshabilitar Recursos Administrativos Implícitos
 Function DisableAdminShares {
-	Write-Output "Deshabilitando implicit administrative shares..."
+	Write-Output "Deshabilitando Recursos Administrativos Implícitos..."
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "AutoShareWks" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar implicit administrative shares
+# Habilitar Recursos Administrativos Implícitos
 Function EnableAdminShares {
-	Write-Output "Habilitando implicit administrative shares..."
+	Write-Output "Habilitando Recursos Administrativos Implícitos..."
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "AutoShareWks" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar obsolete SMB 1.0 protocol - Disabled by default since 1709
+# Deshabilitar el Protocolo SMB 1.0 obsoleto - Desactivado por defecto desde 1709
 Function DisableSMB1 {
-	Write-Output "Deshabilitando SMB 1.0 protocol..."
+	Write-Output "Deshabilitando el Protocolo SMB 1.0..."
 	Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar obsolete SMB 1.0 protocol - Disabled by default since 1709
+# Habilitar el Protocolo SMB 1.0 obsoleto - Desactivado por defecto desde 1709
 Function EnableSMB1 {
-	Write-Output "Habilitando SMB 1.0 protocol..."
+	Write-Output "Habilitando el Protocolo SMB 1.0..."
 	Set-SmbServerConfiguration -EnableSMB1Protocol $true -Force
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar SMB Server - Completely disables file and printer sharing, but leaves the system able to connect to another SMB server as a client
+# Deshabilitación del servidor SMB: deshabilita completamente el uso compartido de archivos e impresoras, pero deja que el sistema pueda conectarse a otro servidor SMB como cliente
 Function DisableSMBServer {
-	Write-Output "Deshabilitando SMB Server..."
+	Write-Output "Deshabilitando el Servidor SMB..."
 	Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force
 	Set-SmbServerConfiguration -EnableSMB2Protocol $false -Force
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar SMB Server
+# Habilitar el Servidor SMB
 Function EnableSMBServer {
-	Write-Output "Habilitando SMB Server..."
+	Write-Output "Habilitando el Servidor SMB..."
 	Set-SmbServerConfiguration -EnableSMB2Protocol $true -Force
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Deshabilitar Link-Local Multicast Name Resolution (LLMNR) protocol
+# Deshabilitar el Protocolo de Resolución de Nombre de Multidifusión Local de Enlace (LLMNR)
 Function DisableLLMNR {
 	Write-Output "Deshabilitando LLMNR..."
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient")) {
@@ -769,15 +769,15 @@ Function DisableLLMNR {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" -Name "EnableMulticast" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
-# Habilitar Link-Local Multicast Name Resolution (LLMNR) protocol
+# Habilitar el Protocolo de Resolución de Nombre de Multidifusión Local de Enlace (LLMNR)
 Function EnableLLMNR {
 	Write-Output "Habilitando LLMNR..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" -Name "EnableMulticast" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set current network profile to private (allow file sharing, device discovery, etc.)
@@ -785,7 +785,7 @@ Function SetCurrentNetworkPrivate {
 	Write-Output "Setting current network profile to private..."
 	Set-NetConnectionProfile -NetworkCategory Private
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set current network profile to public (deny file sharing, device discovery, etc.)
@@ -793,7 +793,7 @@ Function SetCurrentNetworkPublic {
 	Write-Output "Setting current network profile to public..."
 	Set-NetConnectionProfile -NetworkCategory Public
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set unknown networks profile to private (allow file sharing, device discovery, etc.)
@@ -804,7 +804,7 @@ Function SetUnknownNetworksPrivate {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\010103000F0000F0010000000F0000F0C967A3643C3AD745950DA7859209176EF5B87C875FA20DF21951640E807D7C24" -Name "Category" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set unknown networks profile to public (deny file sharing, device discovery, etc.)
@@ -812,7 +812,7 @@ Function SetUnknownNetworksPublic {
 	Write-Output "Setting unknown networks profile to public..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\010103000F0000F0010000000F0000F0C967A3643C3AD745950DA7859209176EF5B87C875FA20DF21951640E807D7C24" -Name "Category" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar automatic installation of network devices
@@ -823,7 +823,7 @@ Function DisableNetDevicesAutoInst {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\NcdAutoSetup\Private" -Name "AutoSetup" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar automatic installation of network devices
@@ -831,7 +831,7 @@ Function EnableNetDevicesAutoInst {
 	Write-Output "Habilitando automatic installation of network devices..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\NcdAutoSetup\Private" -Name "AutoSetup" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Controlled Folder Access (Defender Exploit Guard feature) - Applicable to 1709 or newer, requires Windows Defender to be enabled
@@ -839,7 +839,7 @@ Function EnableCtrldFolderAccess {
 	Write-Output "Habilitando Controlled Folder Access..."
 	Set-MpPreference -EnableControlledFolderAccess Enabled
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Controlled Folder Access (Defender Exploit Guard feature) - Applicable to 1709 or newer, requires Windows Defender to be enabled
@@ -847,7 +847,7 @@ Function DisableCtrldFolderAccess {
 	Write-Output "Deshabilitando Controlled Folder Access..."
 	Set-MpPreference -EnableControlledFolderAccess Disabled
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Firewall
@@ -858,7 +858,7 @@ Function DisableFirewall {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" -Name "EnableFirewall" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Firewall
@@ -866,7 +866,7 @@ Function EnableFirewall {
 	Write-Output "Habilitando Firewall..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" -Name "EnableFirewall" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Windows Defender
@@ -882,7 +882,7 @@ Function DisableDefender {
 		Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Windows Defender
@@ -895,7 +895,7 @@ Function EnableDefender {
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -Type ExpandString -Value "`"%ProgramFiles%\Windows Defender\MSASCuiL.exe`""
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Windows Defender Cloud
@@ -907,7 +907,7 @@ Function DisableDefenderCloud {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SpynetReporting" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SubmitSamplesConsent" -Type DWord -Value 2
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Windows Defender Cloud
@@ -916,7 +916,7 @@ Function EnableDefenderCloud {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SpynetReporting" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SubmitSamplesConsent" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar F8 boot menu options
@@ -924,7 +924,7 @@ Function EnableF8BootMenu {
 	Write-Output "Habilitando F8 boot menu options..."
 	bcdedit /set `{current`} bootmenupolicy Legacy | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar F8 boot menu options
@@ -932,7 +932,7 @@ Function DisableF8BootMenu {
 	Write-Output "Deshabilitando F8 boot menu options..."
 	bcdedit /set `{current`} bootmenupolicy Standard | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set Data Execution Prevention (DEP) policy to OptOut
@@ -940,7 +940,7 @@ Function SetDEPOptOut {
 	Write-Output "Setting Data Execution Prevention (DEP) policy to OptOut..."
 	bcdedit /set `{current`} nx OptOut | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set Data Execution Prevention (DEP) policy to OptIn
@@ -948,7 +948,7 @@ Function SetDEPOptIn {
 	Write-Output "Setting Data Execution Prevention (DEP) policy to OptIn..."
 	bcdedit /set `{current`} nx OptIn | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Core Isolation Memory Integrity - Part of Windows Defender System Guard virtualization-based security - Supported from 1803
@@ -959,7 +959,7 @@ Function EnableCIMemoryIntegrity {
 	}
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Core Isolation Memory Integrity - 
@@ -967,7 +967,7 @@ Function DisableCIMemoryIntegrity {
 	Write-Output "Deshabilitando Core Isolation Memory Integrity..."
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Windows Script Host (execution of *.vbs scripts and alike)
@@ -975,7 +975,7 @@ Function DisableScriptHost {
 	Write-Output "Deshabilitando Windows Script Host..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings" -Name "Enabled" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Windows Script Host
@@ -983,7 +983,7 @@ Function EnableScriptHost {
 	Write-Output "Habilitando Windows Script Host..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings" -Name "Enabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar strong cryptography for .NET Framework (version 4 and above)
@@ -993,7 +993,7 @@ Function EnableDotNetStrongCrypto {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar strong cryptography for .NET Framework (version 4 and above)
@@ -1002,7 +1002,7 @@ Function DisableDotNetStrongCrypto {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319" -Name "SchUseStrongCrypto" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Meltdown (CVE-2017-5754) compatibility flag - Required for January 2018 and all subsequent Windows updates
@@ -1016,7 +1016,7 @@ Function EnableMeltdownCompatFlag {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\QualityCompat" -Name "cadca5fe-87d3-4b96-b7fb-a231484277cc" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Meltdown (CVE-2017-5754) compatibility flag
@@ -1024,7 +1024,7 @@ Function DisableMeltdownCompatFlag {
 	Write-Output "Deshabilitando Meltdown (CVE-2017-5754) compatibility flag..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\QualityCompat" -Name "cadca5fe-87d3-4b96-b7fb-a231484277cc" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 
@@ -1041,7 +1041,7 @@ Function DisableUpdateMSRT {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" -Name "DontOfferThroughWUAU" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar offering of Malicious Software Removal Tool through Windows Update
@@ -1049,7 +1049,7 @@ Function EnableUpdateMSRT {
 	Write-Output "Habilitando Malicious Software Removal Tool offering..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" -Name "DontOfferThroughWUAU" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar offering of drivers through Windows Update
@@ -1072,7 +1072,7 @@ Function DisableUpdateDriver {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "ExcludeWUDriversInQualityUpdate" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar offering of drivers through Windows Update
@@ -1084,7 +1084,7 @@ Function EnableUpdateDriver {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DriverSearching" -Name "DriverUpdateWizardWuSearchEnabled" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "ExcludeWUDriversInQualityUpdate" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Windows Update automatic restart
@@ -1097,7 +1097,7 @@ Function DisableUpdateRestart {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoRebootWithLoggedOnUsers" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUPowerManagement" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Windows Update automatic restart
@@ -1106,7 +1106,7 @@ Function EnableUpdateRestart {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoRebootWithLoggedOnUsers" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUPowerManagement" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Stop and disable Home Groups services - Not applicable to 1803 and newer or Server
@@ -1117,7 +1117,7 @@ Function DisableHomeGroups {
 	Stop-Service "HomeGroupProvider" -WarningAction SilentlyContinue
 	Set-Service "HomeGroupProvider" -StartupType Disabled
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar and start Home Groups services - Not applicable to 1803 and newer or Server
@@ -1127,7 +1127,7 @@ Function EnableHomeGroups {
 	Set-Service "HomeGroupProvider" -StartupType Manual
 	Start-Service "HomeGroupProvider" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Shared Experiences - Not applicable to Server
@@ -1136,7 +1136,7 @@ Function DisableSharedExperiences {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableCdp" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableMmx" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Shared Experiences - Not applicable to Server
@@ -1145,7 +1145,7 @@ Function EnableSharedExperiences {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableCdp" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableMmx" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Remote Assistance - Not applicable to Server (unless Remote Assistance is explicitly installed)
@@ -1160,7 +1160,7 @@ Function EnableRemoteAssistance {
 	Write-Output "Habilitando Remote Assistance..."
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance" -Name "fAllowToGetHelp" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Remote Desktop w/o Network Level Authentication
@@ -1170,7 +1170,7 @@ Function EnableRemoteDesktop {
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Type DWord -Value 0
 	Enable-NetFirewallRule -Name "RemoteDesktop*"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Remote Desktop
@@ -1180,7 +1180,7 @@ Function DisableRemoteDesktop {
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Type DWord -Value 1
 	Disable-NetFirewallRule -Name "RemoteDesktop*"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Autoplay
@@ -1188,7 +1188,7 @@ Function DisableAutoplay {
 	Write-Output "Deshabilitando Autoplay..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers" -Name "DisableAutoplay" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Autoplay
@@ -1196,7 +1196,7 @@ Function EnableAutoplay {
 	Write-Output "Habilitando Autoplay..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers" -Name "DisableAutoplay" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Autorun for all drives
@@ -1207,7 +1207,7 @@ Function DisableAutorun {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "NoDriveTypeAutoRun" -Type DWord -Value 255
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Autorun for removable drives
@@ -1215,7 +1215,7 @@ Function EnableAutorun {
 	Write-Output "Habilitando Autorun for all drives..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "NoDriveTypeAutoRun" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Storage Sense - automatic disk cleanup - Not applicable to Server
@@ -1230,7 +1230,7 @@ Function EnableStorageSense {
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Name "32" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Name "StoragePoliciesNotified" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Storage Sense - Not applicable to Server
@@ -1238,7 +1238,7 @@ Function DisableStorageSense {
 	Write-Output "Deshabilitando Storage Sense..."
 	Remove-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar scheduled defragmentation task
@@ -1246,7 +1246,7 @@ Function DisableDefragmentation {
 	Write-Output "Deshabilitando scheduled defragmentation..."
 	Disable-ScheduledTask -TaskName "Microsoft\Windows\Defrag\ScheduledDefrag" | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar scheduled defragmentation task
@@ -1254,7 +1254,7 @@ Function EnableDefragmentation {
 	Write-Output "Habilitando scheduled defragmentation..."
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Defrag\ScheduledDefrag" | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Stop and disable Superfetch service - Not applicable to Server
@@ -1263,7 +1263,7 @@ Function DisableSuperfetch {
 	Stop-Service "SysMain" -WarningAction SilentlyContinue
 	Set-Service "SysMain" -StartupType Disabled
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Start and enable Superfetch service - Not applicable to Server
@@ -1272,7 +1272,7 @@ Function EnableSuperfetch {
 	Set-Service "SysMain" -StartupType Automatic
 	Start-Service "SysMain" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Stop and disable Windows Search indexing service
@@ -1281,7 +1281,7 @@ Function DisableIndexing {
 	Stop-Service "WSearch" -WarningAction SilentlyContinue
 	Set-Service "WSearch" -StartupType Disabled
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Start and enable Windows Search indexing service
@@ -1291,7 +1291,7 @@ Function EnableIndexing {
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WSearch" -Name "DelayedAutoStart" -Type DWord -Value 1
 	Start-Service "WSearch" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set BIOS time to UTC
@@ -1306,7 +1306,7 @@ Function SetBIOSTimeLocal {
 	Write-Output "Setting BIOS time to Local time..."
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" -Name "RealTimeIsUniversal" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Hibernation - Do not use on Server with automatically started Hyper-V hvboot service as it may lead to BSODs (Win10 with Hyper-V is fine)
@@ -1318,7 +1318,7 @@ Function EnableHibernation {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" -Name "ShowHibernateOption" -Type Dword -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Hibernation
@@ -1330,7 +1330,7 @@ Function DisableHibernation {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" -Name "ShowHibernateOption" -Type Dword -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Sleep start menu and keyboard button
@@ -1343,7 +1343,7 @@ Function DisableSleepButton {
 	powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 0
 	powercfg /SETDCVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Sleep start menu and keyboard button
@@ -1356,7 +1356,7 @@ Function EnableSleepButton {
 	powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 1
 	powercfg /SETDCVALUEINDEX SCHEME_CURRENT SUB_BUTTONS SBUTTONACTION 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar display and sleep mode timeouts
@@ -1367,7 +1367,7 @@ Function DisableSleepTimeout {
 	powercfg /X standby-timeout-ac 0
 	powercfg /X standby-timeout-dc 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar display and sleep mode timeouts
@@ -1378,7 +1378,7 @@ Function EnableSleepTimeout {
 	powercfg /X standby-timeout-ac 30
 	powercfg /X standby-timeout-dc 15
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Fast Startup
@@ -1386,7 +1386,7 @@ Function DisableFastStartup {
 	Write-Output "Deshabilitando Fast Startup..."
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name "HiberbootEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Fast Startup
@@ -1394,7 +1394,7 @@ Function EnableFastStartup {
 	Write-Output "Habilitando Fast Startup..."
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name "HiberbootEnabled" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 
@@ -1412,7 +1412,7 @@ Function DisableActionCenter {
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "DisableNotificationCenter" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Action Center
@@ -1421,7 +1421,7 @@ Function EnableActionCenter {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "DisableNotificationCenter" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Lock screen
@@ -1432,7 +1432,7 @@ Function DisableLockScreen {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Lock screen
@@ -1440,7 +1440,7 @@ Function EnableLockScreen {
 	Write-Output "Habilitando Lock screen..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Lock screen (Anniversary Update workaround) - Applicable to 1607 - 1803 (The GPO used in DisableLockScreen has been fixed again in 1803)
@@ -1458,7 +1458,7 @@ Function DisableLockScreenRS1 {
 	$action.Arguments = "add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\SessionData /t REG_DWORD /v AllowLockScreen /d 0 /f"
 	$service.GetFolder("\").RegisterTaskDefinition("Disable LockScreen", $task, 6, "NT AUTHORITY\SYSTEM", $null, 4) | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Lock screen (Anniversary Update workaround) - Applicable to 1607 - 1803
@@ -1466,7 +1466,7 @@ Function EnableLockScreenRS1 {
 	Write-Output "Habilitando Lock screen (removing scheduler workaround)..."
 	Unregister-ScheduledTask -TaskName "Disable LockScreen" -Confirm:$false -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide network options from Lock Screen
@@ -1474,7 +1474,7 @@ Function HideNetworkFromLockScreen {
 	Write-Output "Hiding network options from Lock Screen..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DontDisplayNetworkSelectionUI" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show network options on lock screen
@@ -1482,7 +1482,7 @@ Function ShowNetworkOnLockScreen {
 	Write-Output "Showing network options on Lock Screen..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DontDisplayNetworkSelectionUI" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide shutdown options from Lock Screen
@@ -1490,7 +1490,7 @@ Function HideShutdownFromLockScreen {
 	Write-Output "Hiding shutdown options from Lock Screen..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ShutdownWithoutLogon" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show shutdown options on lock screen
@@ -1498,7 +1498,7 @@ Function ShowShutdownOnLockScreen {
 	Write-Output "Showing shutdown options on Lock Screen..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ShutdownWithoutLogon" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Sticky keys prompt
@@ -1506,7 +1506,7 @@ Function DisableStickyKeys {
 	Write-Output "Deshabilitando Sticky keys prompt..."
 	Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name "Flags" -Type String -Value "506"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Sticky keys prompt
@@ -1514,7 +1514,7 @@ Function EnableStickyKeys {
 	Write-Output "Habilitando Sticky keys prompt..."
 	Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name "Flags" -Type String -Value "510"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Task Manager details - Applicable to 1607 and later - Although this functionality exist even in earlier versions, the Task Manager's behavior is different there and is not compatible with this tweak
@@ -1529,7 +1529,7 @@ Function ShowTaskManagerDetails {
 	$preferences.Preferences[28] = 0
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager" -Name "Preferences" -Type Binary -Value $preferences.Preferences
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Task Manager details
@@ -1541,7 +1541,7 @@ Function HideTaskManagerDetails {
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager" -Name "Preferences" -Type Binary -Value $preferences.Preferences
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show file operations details
@@ -1552,7 +1552,7 @@ Function ShowFileOperationsDetails {
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide file operations details
@@ -1560,7 +1560,7 @@ Function HideFileOperationsDetails {
 	Write-Output "Hiding file operations details..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar file delete confirmation dialog
@@ -1571,7 +1571,7 @@ Function EnableFileDeleteConfirm {
 	}
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "ConfirmFileDelete" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar file delete confirmation dialog
@@ -1579,7 +1579,7 @@ Function DisableFileDeleteConfirm {
 	Write-Output "Deshabilitando file delete confirmation dialog..."
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "ConfirmFileDelete" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Taskbar Search icon / box
@@ -1587,7 +1587,7 @@ Function HideTaskbarSearch {
 	Write-Output "Hiding Taskbar Search icon / box..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Taskbar Search icon
@@ -1595,7 +1595,7 @@ Function ShowTaskbarSearchIcon {
 	Write-Output "Showing Taskbar Search icon..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Taskbar Search box
@@ -1603,7 +1603,7 @@ Function ShowTaskbarSearchBox {
 	Write-Output "Showing Taskbar Search box..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 2
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Task View button
@@ -1611,7 +1611,7 @@ Function HideTaskView {
 	Write-Output "Hiding Task View button..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Task View button
@@ -1619,7 +1619,7 @@ Function ShowTaskView {
 	Write-Output "Showing Task View button..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show small icons in taskbar
@@ -1627,7 +1627,7 @@ Function ShowSmallTaskbarIcons {
 	Write-Output "Showing small icons in taskbar..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show large icons in taskbar
@@ -1635,7 +1635,7 @@ Function ShowLargeTaskbarIcons {
 	Write-Output "Showing large icons in taskbar..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set taskbar buttons to show labels and combine when taskbar is full
@@ -1643,7 +1643,7 @@ Function SetTaskbarCombineWhenFull {
 	Write-Output "Setting taskbar buttons to combine when taskbar is full..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set taskbar buttons to show labels and never combine
@@ -1651,7 +1651,7 @@ Function SetTaskbarCombineNever {
 	Write-Output "Setting taskbar buttons to never combine..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 2
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set taskbar buttons to always combine and hide labels
@@ -1659,7 +1659,7 @@ Function SetTaskbarCombineAlways {
 	Write-Output "Setting taskbar buttons to always combine, hide labels..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Taskbar People icon
@@ -1670,7 +1670,7 @@ Function HideTaskbarPeopleIcon {
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Taskbar People icon
@@ -1678,7 +1678,7 @@ Function ShowTaskbarPeopleIcon {
 	Write-Output "Showing People icon..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show all tray icons
@@ -1686,7 +1686,7 @@ Function ShowTrayIcons {
 	Write-Output "Showing all tray icons..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide tray icons as needed
@@ -1694,7 +1694,7 @@ Function HideTrayIcons {
 	Write-Output "Hiding tray icons..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar search for app in store for unknown extensions
@@ -1705,7 +1705,7 @@ Function DisableSearchAppInStore {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoUseStoreOpenWith" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar search for app in store for unknown extensions
@@ -1713,7 +1713,7 @@ Function EnableSearchAppInStore {
 	Write-Output "Habilitando search for app in store for unknown extensions..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoUseStoreOpenWith" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar 'How do you want to open this file?' prompt
@@ -1724,7 +1724,7 @@ Function DisableNewAppPrompt {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoNewAppAlert" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar 'How do you want to open this file?' prompt
@@ -1732,7 +1732,7 @@ Function EnableNewAppPrompt {
 	Write-Output "Habilitando 'How do you want to open this file?' prompt..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Name "NoNewAppAlert" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set Control Panel view to Small icons (Classic)
@@ -1744,7 +1744,7 @@ Function SetControlPanelSmallIcons {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "StartupPage" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "AllItemsIconView" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set Control Panel view to Large icons (Classic)
@@ -1756,7 +1756,7 @@ Function SetControlPanelLargeIcons {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "StartupPage" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "AllItemsIconView" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set Control Panel view to categories
@@ -1765,7 +1765,7 @@ Function SetControlPanelCategories {
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "StartupPage" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" -Name "AllItemsIconView" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Adjusts visual effects for performance - Disables animations, transparency etc. but leaves font smoothing and miniatures enabled
@@ -1782,7 +1782,7 @@ Function SetVisualFXPerformance {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Type DWord -Value 3
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\DWM" -Name "EnableAeroPeek" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Adjusts visual effects for appearance
@@ -1799,7 +1799,7 @@ Function SetVisualFXAppearance {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Type DWord -Value 3
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\DWM" -Name "EnableAeroPeek" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Add secondary en-US keyboard
@@ -1809,7 +1809,7 @@ Function AddENKeyboard {
 	$langs.Add("en-US")
 	Set-WinUserLanguageList $langs -Force
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Remove secondary en-US keyboard
@@ -1818,7 +1818,7 @@ Function RemoveENKeyboard {
 	$langs = Get-WinUserLanguageList
 	Set-WinUserLanguageList ($langs | ? {$_.LanguageTag -ne "en-US"}) -Force
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar NumLock after startup
@@ -1834,7 +1834,7 @@ Function EnableNumlock {
 		$wsh.SendKeys('{NUMLOCK}')
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar NumLock after startup
@@ -1850,7 +1850,7 @@ Function DisableNumlock {
 		$wsh.SendKeys('{NUMLOCK}')
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 
@@ -1864,7 +1864,7 @@ Function ShowKnownExtensions {
 	Write-Output "Showing known file extensions..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide known file extensions
@@ -1872,7 +1872,7 @@ Function HideKnownExtensions {
 	Write-Output "Hiding known file extensions..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show hidden files
@@ -1880,7 +1880,7 @@ Function ShowHiddenFiles {
 	Write-Output "Showing hidden files..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide hidden files
@@ -1888,7 +1888,7 @@ Function HideHiddenFiles {
 	Write-Output "Hiding hidden files..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 2
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide sync provider notifications
@@ -1896,7 +1896,7 @@ Function HideSyncNotifications {
 	Write-Output "Hiding sync provider notifications..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show sync provider notifications
@@ -1904,7 +1904,7 @@ Function ShowSyncNotifications {
 	Write-Output "Showing sync provider notifications..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide recently and frequently used item shortcuts in Explorer
@@ -1913,7 +1913,7 @@ Function HideRecentShortcuts {
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowRecent" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowFrequent" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show recently and frequently used item shortcuts in Explorer
@@ -1922,7 +1922,7 @@ Function ShowRecentShortcuts {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowRecent" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "ShowFrequent" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Change default Explorer view to This PC
@@ -1930,7 +1930,7 @@ Function SetExplorerThisPC {
 	Write-Output "Changing default Explorer view to This PC..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Change default Explorer view to Quick Access
@@ -1938,7 +1938,7 @@ Function SetExplorerQuickAccess {
 	Write-Output "Changing default Explorer view to Quick Access..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show This PC shortcut on desktop
@@ -1953,7 +1953,7 @@ Function ShowThisPCOnDesktop {
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide This PC shortcut from desktop
@@ -1962,7 +1962,7 @@ Function HideThisPCFromDesktop {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show User Folder shortcut on desktop
@@ -1977,7 +1977,7 @@ Function ShowUserFolderOnDesktop {
 	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide User Folder shortcut from desktop
@@ -1986,7 +1986,7 @@ Function HideUserFolderFromDesktop {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{59031a47-3f72-44a7-89c5-5595fe6b30ee}" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Desktop icon from This PC - The icon remains in personal folders and open/save dialogs
@@ -1994,7 +1994,7 @@ Function HideDesktopFromThisPC {
 	Write-Output "Hiding Desktop icon from This PC..."
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Desktop icon in This PC
@@ -2004,7 +2004,7 @@ Function ShowDesktopInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}" | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Desktop icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
@@ -2013,7 +2013,7 @@ Function HideDesktopFromExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Desktop icon in Explorer namespace
@@ -2022,7 +2022,7 @@ Function ShowDesktopInExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Documents icon from This PC - The icon remains in personal folders and open/save dialogs
@@ -2031,7 +2031,7 @@ Function HideDocumentsFromThisPC {
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Documents icon in This PC
@@ -2044,7 +2044,7 @@ Function ShowDocumentsInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}" | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Documents icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
@@ -2053,7 +2053,7 @@ Function HideDocumentsFromExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Documents icon in Explorer namespace
@@ -2062,7 +2062,7 @@ Function ShowDocumentsInExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Downloads icon from This PC - The icon remains in personal folders and open/save dialogs
@@ -2071,7 +2071,7 @@ Function HideDownloadsFromThisPC {
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{374DE290-123F-4565-9164-39C4925E467B}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Downloads icon in This PC
@@ -2084,7 +2084,7 @@ Function ShowDownloadsInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{374DE290-123F-4565-9164-39C4925E467B}" | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Downloads icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
@@ -2093,7 +2093,7 @@ Function HideDownloadsFromExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Downloads icon in Explorer namespace
@@ -2102,7 +2102,7 @@ Function ShowDownloadsInExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Music icon from This PC - The icon remains in personal folders and open/save dialogs
@@ -2111,7 +2111,7 @@ Function HideMusicFromThisPC {
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{1CF1260C-4DD0-4ebb-811F-33C572699FDE}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Music icon in This PC
@@ -2124,7 +2124,7 @@ Function ShowMusicInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{1CF1260C-4DD0-4ebb-811F-33C572699FDE}" | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Music icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
@@ -2133,7 +2133,7 @@ Function HideMusicFromExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Music icon in Explorer namespace
@@ -2142,7 +2142,7 @@ Function ShowMusicInExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Pictures icon from This PC - The icon remains in personal folders and open/save dialogs
@@ -2151,7 +2151,7 @@ Function HidePicturesFromThisPC {
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Pictures icon in This PC
@@ -2164,7 +2164,7 @@ Function ShowPicturesInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}" | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Pictures icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
@@ -2173,7 +2173,7 @@ Function HidePicturesFromExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Pictures icon in Explorer namespace
@@ -2182,7 +2182,7 @@ Function ShowPicturesInExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Videos icon from This PC - The icon remains in personal folders and open/save dialogs
@@ -2191,7 +2191,7 @@ Function HideVideosFromThisPC {
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A0953C92-50DC-43bf-BE83-3742FED03C9C}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Videos icon in This PC
@@ -2204,7 +2204,7 @@ Function ShowVideosInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A0953C92-50DC-43bf-BE83-3742FED03C9C}" | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Videos icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
@@ -2213,7 +2213,7 @@ Function HideVideosFromExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show Videos icon in Explorer namespace
@@ -2222,7 +2222,7 @@ Function ShowVideosInExplorer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Show"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide 3D Objects icon from This PC - The icon remains in personal folders and open/save dialogs
@@ -2230,7 +2230,7 @@ Function Hide3DObjectsFromThisPC {
 	Write-Output "Hiding 3D Objects icon from This PC..."
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show 3D Objects icon in This PC
@@ -2240,7 +2240,7 @@ Function Show3DObjectsInThisPC {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide 3D Objects icon from Explorer namespace - Hides the icon also from personal folders and open/save dialogs
@@ -2255,7 +2255,7 @@ Function Hide3DObjectsFromExplorer {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -Type String -Value "Hide"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Show 3D Objects icon in Explorer namespace
@@ -2264,7 +2264,7 @@ Function Show3DObjectsInExplorer {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag" -Name "ThisPCPolicy" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar thumbnails, show only file extension icons
@@ -2272,7 +2272,7 @@ Function DisableThumbnails {
 	Write-Output "Deshabilitando thumbnails..."
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "IconsOnly" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar thumbnails
@@ -2280,7 +2280,7 @@ Function EnableThumbnails {
 	Write-Output "Habilitando thumbnails..."
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "IconsOnly" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar creation of Thumbs.db thumbnail cache files
@@ -2289,7 +2289,7 @@ Function DisableThumbsDB {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbnailCache" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbsDBOnNetworkFolders" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar creation of Thumbs.db thumbnail cache files
@@ -2298,7 +2298,7 @@ Function EnableThumbsDB {
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbnailCache" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbsDBOnNetworkFolders" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 
@@ -2315,7 +2315,7 @@ Function DisableOneDrive {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableFileSyncNGSC" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar OneDrive
@@ -2323,7 +2323,7 @@ Function EnableOneDrive {
 	Write-Output "Habilitando OneDrive..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableFileSyncNGSC" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall OneDrive - Not applicable to Server
@@ -2349,7 +2349,7 @@ Function UninstallOneDrive {
 	Remove-Item -Path "HKCR:\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKCR:\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install OneDrive - Not applicable to Server
@@ -2361,7 +2361,7 @@ Function InstallOneDrive {
 	}
 	Start-Process $onedrive -NoNewWindow
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall default Microsoft applications
@@ -2406,7 +2406,7 @@ Function UninstallMsftBloat {
 	Get-AppxPackage "Microsoft.ZuneMusic" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.ZuneVideo" | Remove-AppxPackage
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install default Microsoft applications
@@ -2451,7 +2451,7 @@ Function InstallMsftBloat {
 	Get-AppxPackage -AllUsers "Microsoft.ZuneMusic" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.ZuneVideo" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # In case you have removed them for good, you can try to restore the files using installation medium as follows
@@ -2494,7 +2494,7 @@ function UninstallThirdPartyBloat {
 	Get-AppxPackage "WinZipComputing.WinZipUniversal" | Remove-AppxPackage
 	Get-AppxPackage "XINGAG.XING" | Remove-AppxPackage
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install default third party applications
@@ -2530,7 +2530,7 @@ Function InstallThirdPartyBloat {
 	Get-AppxPackage -AllUsers "WinZipComputing.WinZipUniversal" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "XINGAG.XING" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Windows Store
@@ -2539,7 +2539,7 @@ Function UninstallWindowsStore {
 	Get-AppxPackage "Microsoft.DesktopAppInstaller" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.WindowsStore" | Remove-AppxPackage
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Windows Store
@@ -2548,7 +2548,7 @@ Function InstallWindowsStore {
 	Get-AppxPackage -AllUsers "Microsoft.DesktopAppInstaller" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.WindowsStore" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Xbox features
@@ -2565,7 +2565,7 @@ Function DisableXboxFeatures {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Xbox features
@@ -2579,7 +2579,7 @@ Function EnableXboxFeatures {
 	Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 1
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar built-in Adobe Flash in IE and Edge
@@ -2594,7 +2594,7 @@ Function DisableAdobeFlash {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Addons" -Name "FlashPlayerEnabled" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar built-in Adobe Flash in IE and Edge
@@ -2603,7 +2603,7 @@ Function EnableAdobeFlash {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "DisableFlashInIE" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Addons" -Name "FlashPlayerEnabled" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Windows Media Player
@@ -2611,7 +2611,7 @@ Function UninstallMediaPlayer {
 	Write-Output "Uninstalling Windows Media Player..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Windows Media Player
@@ -2619,7 +2619,7 @@ Function InstallMediaPlayer {
 	Write-Output "Installing Windows Media Player..."
 	Enable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Internet Explorer
@@ -2627,7 +2627,7 @@ Function UninstallInternetExplorer {
 	Write-Output "Uninstalling Internet Explorer..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-$env:PROCESSOR_ARCHITECTURE" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Internet Explorer
@@ -2635,7 +2635,7 @@ Function InstallInternetExplorer {
 	Write-Output "Installing Internet Explorer..."
 	Enable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-$env:PROCESSOR_ARCHITECTURE" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Work Folders Client - Not applicable to Server
@@ -2643,7 +2643,7 @@ Function UninstallWorkFolders {
 	Write-Output "Uninstalling Work Folders Client..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "WorkFolders-Client" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Work Folders Client - Not applicable to Server
@@ -2651,7 +2651,7 @@ Function InstallWorkFolders {
 	Write-Output "Installing Work Folders Client..."
 	Enable-WindowsOptionalFeature -Online -FeatureName "WorkFolders-Client" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Linux Subsystem - Applicable to 1607 or newer
@@ -2664,7 +2664,7 @@ Function InstallLinuxSubsystem {
 	}
 	Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Linux Subsystem - Applicable to 1607 or newer
@@ -2676,7 +2676,7 @@ Function UninstallLinuxSubsystem {
 	}
 	Disable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Hyper-V - Not applicable to Home
@@ -2688,7 +2688,7 @@ Function InstallHyperV {
 		Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Hyper-V - Not applicable to Home
@@ -2700,7 +2700,7 @@ Function UninstallHyperV {
 		Disable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-All" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Set Photo Viewer association for bmp, gif, jpg, png and tif
@@ -2716,7 +2716,7 @@ Function SetPhotoViewerAssociation {
 		Set-ItemProperty -Path $("HKCR:\$type\shell\open\command") -Name "(Default)" -Type ExpandString -Value "%SystemRoot%\System32\rundll32.exe `"%ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll`", ImageView_Fullscreen %1"
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Unset Photo Viewer association for bmp, gif, jpg, png and tif
@@ -2733,7 +2733,7 @@ Function UnsetPhotoViewerAssociation {
 	Remove-Item -Path "HKCR:\jpegfile\shell\open" -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "HKCR:\pngfile\shell\open" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Add Photo Viewer to "Open with..."
@@ -2748,7 +2748,7 @@ Function AddPhotoViewerOpenWith {
 	Set-ItemProperty -Path "HKCR:\Applications\photoviewer.dll\shell\open\command" -Name "(Default)" -Type ExpandString -Value "%SystemRoot%\System32\rundll32.exe `"%ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll`", ImageView_Fullscreen %1"
 	Set-ItemProperty -Path "HKCR:\Applications\photoviewer.dll\shell\open\DropTarget" -Name "Clsid" -Type String -Value "{FFE2A43C-56B9-4bf5-9A79-CC6D4285608A}"
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Remove Photo Viewer from "Open with..."
@@ -2759,7 +2759,7 @@ Function RemovePhotoViewerOpenWith {
 	}
 	Remove-Item -Path "HKCR:\Applications\photoviewer.dll\shell\open" -Recurse -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Microsoft Print to PDF
@@ -2767,7 +2767,7 @@ Function UninstallPDFPrinter {
 	Write-Output "Uninstalling Microsoft Print to PDF..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "Printing-PrintToPDFServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Microsoft Print to PDF
@@ -2775,7 +2775,7 @@ Function InstallPDFPrinter {
 	Write-Output "Installing Microsoft Print to PDF..."
 	Enable-WindowsOptionalFeature -Online -FeatureName "Printing-PrintToPDFServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Uninstall Microsoft XPS Document Writer
@@ -2783,7 +2783,7 @@ Function UninstallXPSPrinter {
 	Write-Output "Uninstalling Microsoft XPS Document Writer..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Install Microsoft XPS Document Writer
@@ -2791,7 +2791,7 @@ Function InstallXPSPrinter {
 	Write-Output "Installing Microsoft XPS Document Writer..."
 	Enable-WindowsOptionalFeature -Online -FeatureName "Printing-XPSServices-Features" -NoRestart -WarningAction SilentlyContinue | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Remove Default Fax Printer
@@ -2799,7 +2799,7 @@ Function RemoveFaxPrinter {
 	Write-Output "Removing Default Fax Printer..."
 	Remove-Printer -Name "Fax" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Add Default Fax Printer
@@ -2807,7 +2807,7 @@ Function AddFaxPrinter {
 	Write-Output "Adding Default Fax Printer..."
 	Add-Printer -Name "Fax" -DriverName "Microsoft Shared Fax Driver" -PortName "SHRFAX:" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 
@@ -2824,7 +2824,7 @@ Function HideServerManagerOnLogin {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Server\ServerManager" -Name "DoNotOpenAtLogon" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Hide Server Manager after login
@@ -2832,7 +2832,7 @@ Function ShowServerManagerOnLogin {
 	Write-Output "Showing Server Manager after login..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Server\ServerManager" -Name "DoNotOpenAtLogon" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Shutdown Event Tracker
@@ -2843,7 +2843,7 @@ Function DisableShutdownTracker {
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Reliability" -Name "ShutdownReasonOn" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Shutdown Event Tracker
@@ -2851,7 +2851,7 @@ Function EnableShutdownTracker {
 	Write-Output "Habilitando Shutdown Event Tracker..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Reliability" -Name "ShutdownReasonOn" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar password complexity and maximum age requirements
@@ -2863,7 +2863,7 @@ Function DisablePasswordPolicy {
 	secedit /configure /db "$env:SYSTEMROOT\security\database\local.sdb" /cfg $tmpfile /areas SECURITYPOLICY | Out-Null
 	Remove-Item -Path $tmpfile
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar password complexity and maximum age requirements
@@ -2875,7 +2875,7 @@ Function EnablePasswordPolicy {
 	secedit /configure /db "$env:SYSTEMROOT\security\database\local.sdb" /cfg $tmpfile /areas SECURITYPOLICY | Out-Null
 	Remove-Item -Path $tmpfile
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Ctrl+Alt+Del requirement before login
@@ -2883,7 +2883,7 @@ Function DisableCtrlAltDelLogin {
 	Write-Output "Deshabilitando Ctrl+Alt+Del requirement before login..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "DisableCAD" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Ctrl+Alt+Del requirement before login
@@ -2891,7 +2891,7 @@ Function EnableCtrlAltDelLogin {
 	Write-Output "Habilitando Ctrl+Alt+Del requirement before login..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "DisableCAD" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Internet Explorer Enhanced Security Configuration (IE ESC)
@@ -2900,7 +2900,7 @@ Function DisableIEEnhancedSecurity {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Internet Explorer Enhanced Security Configuration (IE ESC)
@@ -2909,7 +2909,7 @@ Function EnableIEEnhancedSecurity {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Type DWord -Value 1
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Habilitar Audio
@@ -2918,7 +2918,7 @@ Function EnableAudio {
 	Set-Service "Audiosrv" -StartupType Automatic
 	Start-Service "Audiosrv" -WarningAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Deshabilitar Audio
@@ -2927,7 +2927,7 @@ Function DisableAudio {
 	Stop-Service "Audiosrv" -WarningAction SilentlyContinue
 	Set-Service "Audiosrv" -StartupType Manual
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 
@@ -2951,7 +2951,7 @@ Function UnpinStartMenuTiles {
 		Set-ItemProperty -Path $key.PSPath -Name "Data" -Type Binary -Value $data
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Unpin all Taskbar icons - Note: This function has no counterpart. You have to pin the icons back manually.
@@ -2960,7 +2960,7 @@ Function UnpinTaskbarIcons {
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites" -Type Binary -Value ([byte[]](255))
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 ##########
@@ -2974,7 +2974,7 @@ Function RequireAdmin {
 		Exit
 	}
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Wait for key press
@@ -2983,7 +2983,7 @@ Function WaitForKey {
 	[system.media.systemsounds]::Hand.play()
 	[Console]::ReadKey($true) | Out-Null
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 # Restart computer
@@ -2991,7 +2991,7 @@ Function Restart {
 	Write-Output "Restarting..."
 	Restart-Computer
 	[System.Console]::Beep(1000,300)
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 ###########
@@ -3002,14 +3002,14 @@ Function EnableDarkMode {
   Write-Output "Habilitando Dark Mode"
 	Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 Function DisableDarkMode {
     Write-Output "Deshabilitando Dark Mode"
 	Remove-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 ##########
@@ -3048,7 +3048,7 @@ Function Stop-EdgePDF {
         Set-Item $Edge AppXd4nrz8ff68srnhf9t5a8sbjyar1cr723_ 
     }
 	[System.Console]::Beep()
-	Write-Output "DONE!"
+	Write-Output "TAREA TERMINADA!"
 }
 
 Function DebloatAll {
@@ -3115,7 +3115,7 @@ Function DebloatAll {
         Write-Output "Trying to remove $Bloat."
     }
 	[System.Console]::Beep()
-	Write-Output "DEBLOATING DONE!"
+	Write-Output "DEBLOATING TAREA TERMINADA!"
 }
 
 ##########
