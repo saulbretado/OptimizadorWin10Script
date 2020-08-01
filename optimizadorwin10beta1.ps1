@@ -1,5 +1,5 @@
 ##########
-# Configuración inicial de Windows 10 Modificado
+# Optimizador de Windows 10 Beta 1
 # Autor Primario: Disassembler <disassembler@dasm.cz>
 # Origen del Autor Primario: https://github.com/Disassembler0/Win10-Initial-Setup-Script
 # Fuente Modificada: https://gist.github.com/alirobe/7f3b34ad89a159e6daa1/
@@ -12,7 +12,7 @@
 #
 #	Addition: One command to rule them all, One command to find it, and One command to Run it! 
 #
-#     > powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://git.io/JJazm')"
+#     > powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://git.io/JJaMB')"
 #
 #	Chris Titus Additions:
 #
