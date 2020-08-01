@@ -2980,6 +2980,7 @@ Function RequireAdmin {
 # Wait for key press
 Function WaitForKey {
 	Write-Output "Press any key to continue..."
+	[system.media.systemsounds]::Hand.play()
 	[Console]::ReadKey($true) | Out-Null
 	[System.Console]::Beep()
 	Write-Output "DONE!"
