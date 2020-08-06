@@ -1,30 +1,31 @@
-# win10script
-This is the Ultimate Windows 10 Script from a creation from multiple debloat scripts and gists from github. I also added Chocolatey and other tools to the script that I install on every machine.
+# OptimizadorWin10Script
+Este script te permite optimizar Windows 10 de forma completamente automática, ya que elimina (debloat) de forma automática programas y configuraciones que solo reducen el performance de tu instalación.
 
-## My Additions
+## Cambios por Chis Titus
+• Dark Mode.
+• Un comando para ejecutar todo.
+• Agrego Chocolatey
+• O&O Shutup, configuración y ejecución.
+• Desinstala aplicaciones de la Tiende de Microsoft.
 
-- Dark Mode
-- One Command to launch and run
-- Chocolatey Install
-- O&O Shutup10 CFG and Run
-- Added Install Programs
-- Added Debloat Microsoft Store Apps
+## ¿Mi contribución?
+• Traducción al español.
+• Agregue sonido al terminar cada proceso.
+• Reemplace el Windows Media Player Standard por VLC Media Player.
 
 ## Modifications
-I encourage people to fork this project and comment out things they don't like! Here is a list of normal things people change:
-- Uninstalling OneDrive (This is on in my script)
-- Installing Adobe, Chocolatey, Notepad++, MPC-HC, and 7-Zip
+Este script también desinstala OneDrive, así como instala Adobe Reader, Chocolatey, Notepad++ y 7-Zip.
 
-Comment any thing you don't want out... Example:
+Cuando este traducido completamente, podrás cambiar o modificar las opciones que no te gusten o que no estén de acuerdo a tus necesidades. Por Ejemplo:
 
 ```
-########## NOTE THE # SIGNS! These disable lines This example shows UACLow being set and Disabling SMB1
+########## NOTA LOS SIMBOLOS #, estos habilitan lineas al borrarlos o deshabilitan lineas al agregarlos. En seguida puedes ver como AUC esta en Bajo (Low) y se deshabilito SMB1.
 ### Security Tweaks ###
 	"SetUACLow",                  # "SetUACHigh",
 	"DisableSMB1",                # "EnableSMB1",
 
-########## NOW LETS SWAP THESE VALUES AND ENABLE SMB1 and Set UAC to HIGH
+########## AHORA CAMBIAMOS LA POSISION Y SE HABILITO SMB1 Y UAC SE CAMBIO A ALTO (HIGH)
 ### Security Tweaks ###
-	"SetUACHigh",
-	"EnableSMB1",
+	"SetUACHigh",		#"SetUACLow",
+	"EnableSMB1",		#"DisableSMB1",
 ```
