@@ -2977,18 +2977,18 @@ Function RequireAdmin {
 	Write-Output "TAREA TERMINADA!"
 }
 
-# Wait for key press
+# Esperar por cualquieer tecla
 Function WaitForKey {
-	Write-Output "Press any key to continue..."
+	Write-Output "PRESIONA CUALQUIER TECLA PARA TERMINAR..."
 	[system.media.systemsounds]::Hand.play()
 	[Console]::ReadKey($true) | Out-Null
 	[System.Console]::Beep()
 	Write-Output "TAREA TERMINADA!"
 }
 
-# Restart computer
+# Reiniciar Computarora
 Function Restart {
-	Write-Output "Restarting..."
+	Write-Output "REINICIANDO..."
 	Restart-Computer
 	[System.Console]::Beep(1000,300)
 	Write-Output "TAREA TERMINADA!"
